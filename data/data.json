@@ -1927,6 +1927,19 @@
             ]
         },
         {
+            "name": "Alternate: Thermite-Welded Frame",
+            "key_name": "alt-thermite-welded-frame",
+            "category": "crafting2",
+            "time": 6,
+            "ingredients": [
+                ["reinforced-iron-plate", 1],
+                ["aluminum-powder", 4]
+            ],
+            "products": [
+                ["modular-frame", 1]
+            ]
+        },
+        {
             "name": "Encased Industrial Beam",
             "key_name": "encased-industrial-beam",
             "category": "crafting2",
