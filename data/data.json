@@ -1835,6 +1835,19 @@
             ]
         },
         {
+            "name": "Alternate: Thermite Welded Plate",
+            "key_name": "alt-thermite-welded-plate",
+            "category": "crafting2",
+            "time": 12,
+            "ingredients": [
+                ["iron-plate", 12],
+                ["aluminum-powder", 4]
+            ],
+            "products": [
+                ["reinforced-iron-plate", 4]
+            ]
+        },
+        {
             "name": "Rotor",
             "key_name": "rotor",
             "category": "crafting2",
