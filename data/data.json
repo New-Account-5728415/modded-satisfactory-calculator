@@ -732,6 +732,11 @@
             "tier": 7
         },
         {
+            "name": "Packaged Dissolved Silica",
+            "key_name": "packaged-dissolved-silica",
+            "tier": 7
+        },
+        {
             "name": "Packaged Sulfuric Acid",
             "key_name": "packaged-sulfuric-acid",
             "tier": 7
@@ -3780,6 +3785,32 @@
             ],
             "products": [
                 ["nitric-acid", 1],
+                ["empty-fluid-tank", 1]
+            ]
+        },
+        {
+            "name": "Packaged Dissolved Silica",
+            "key_name": "packaged-dissolved-silica",
+            "category": "packaging",
+            "time": 2,
+            "ingredients": [
+                ["dissolved-silica", 1],
+                ["empty-fluid-tank", 1]
+            ],
+            "products": [
+                ["packaged-dissolved-silica", 1]
+            ]
+        },
+        {
+            "name": "Unpackage Dissolved Silica",
+            "key_name": "unpackage-dissolved-silica",
+            "category": "packaging",
+            "time": 3,
+            "ingredients": [
+                ["packaged-dissolved-silica", 1]
+            ],
+            "products": [
+                ["dissolved-silica", 1],
                 ["empty-fluid-tank", 1]
             ]
         },
