@@ -1289,6 +1289,19 @@
             ]
         },
         {
+            "name": "Alternate: Molded Steel Plate",
+            "key_name": "alt-molded-steel-plate",
+            "category": "smelting2",
+            "time": 15,
+            "ingredients": [
+                ["steel-ingot", 5],
+                ["concrete", 3]
+            ],
+            "products": [
+                ["iron-plate", 15]
+            ]
+        },
+        {
             "name": "Iron Rod",
             "key_name": "iron-rod",
             "category": "crafting1",
