@@ -1032,6 +1032,41 @@
     ],
     "recipes": [
         {
+            "name": "Water Boiling",
+            "key_name": "water-boiling",
+            "category": "refining",
+            "time": 5,
+            "ingredients": [
+                ["water", 10]
+            ],
+            "products": [
+            ]
+        },
+        {
+            "name": "Thermoextracted Sulfur",
+            "key_name": "thermoextracted-sulfur",
+            "category": "refining",
+            "time": 10,
+            "ingredients": [
+                ["sulfuric-acid", 20]
+            ],
+            "products": [
+                ["sulfur", 5]
+            ]
+        },
+        {
+            "name": "Nitric Crystal",
+            "key_name": "nitric-crystal",
+            "category": "refining",
+            "time": 10,
+            "ingredients": [
+                ["nitric_acid", 5]
+            ],
+            "products": [
+                ["quartz-crystal", 5]
+            ]
+        },
+        {
             "name": "Iron Ingot",
             "key_name": "iron-ingot",
             "category": "smelting1",
