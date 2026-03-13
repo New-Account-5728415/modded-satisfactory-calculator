@@ -762,6 +762,16 @@
             "tier": 8
         },
         {
+            "name": "Packaged Dark Matter Residue",
+            "key_name": "packaged-dark-matter-residue",
+            "tier": 9
+        },
+        {
+            "name": "Packaged Excited Photonic Matter",
+            "key_name": "packaged-excited-photonic-matter",
+            "tier": 9
+        },
+        {
             "name": "Smart Plating",
             "key_name": "smart-plating",
             "tier": 2
