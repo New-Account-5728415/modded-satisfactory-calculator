@@ -305,7 +305,7 @@
             "name": "Alien Protein",
             "key_name": "alien-protein",
             "tier": 1,
-            "stack_size": 100
+            "stack_size": 50
         },
         {
             "name": "Alien DNA Capsule",
@@ -478,7 +478,7 @@
         {
             "name": "Raw Quartz",
             "key_name": "raw-quartz",
-            "tier": -1,
+            "tier": 0,
             "stack_size": 100
         },
         {
@@ -496,7 +496,7 @@
         {
             "name": "Sulfur",
             "key_name": "sulfur",
-            "tier": -1,
+            "tier": 0,
             "stack_size": 100
         },
         {
@@ -995,7 +995,7 @@
             "name": "Neural-Quantum Processor",
             "key_name": "neural-quantum-processor",
             "tier": 9,
-            "stack_size": 100
+            "stack_size": 50
         },
         {
             "name": "Singularity Cell",
@@ -1018,6 +1018,24 @@
         {
             "name": "Alien Power Matrix",
             "key_name": "alien-power-matrix",
+            "tier": 9,
+            "stack_size": 50
+        },
+        {
+            "name": "Packaged Dissolved Silica",
+            "key_name": "packaged-dissolved-silica",
+            "tier": 8,
+            "stack_size": 100
+        },
+        {
+            "name": "Packaged Dark Matter Residue",
+            "key_name": "packaged-dark-matter-residue",
+            "tier": 9,
+            "stack_size": 50
+        },
+        {
+            "name": "Packaged Excited Photonic Matter",
+            "key_name": "packaged-excited-photonic-matter",
             "tier": 9,
             "stack_size": 50
         }
@@ -1235,12 +1253,12 @@
             "category": "blending",
             "time": 24,
             "ingredients": [
-                ["iron-ore", 9],
+                ["copper-ore", 9],
                 ["nitrogen-gas", 4.5],
                 ["sulfuric-acid", 0.75]
             ],
             "products": [
-                ["iron-ingot", 30],
+                ["copper-ingot", 30],
                 ["nitric-acid", 1.12]
             ]
         },
@@ -1297,19 +1315,6 @@
             ]
         },
         {
-            "name": "Alternate: Solid Coke Steel Ingot",
-            "key_name": "alt-solid-coke-steel-ingot",
-            "category": "smelting2",
-            "time": 6,
-            "ingredients": [
-                ["iron-ingot", 8],
-                ["petroleum-coke", 9]
-            ],
-            "products": [
-                ["steel-ingot", 12]
-            ]
-        },
-        {
             "name": "Iron Plate",
             "key_name": "iron-plate",
             "category": "crafting1",
@@ -1345,19 +1350,6 @@
             ],
             "products": [
                 ["iron-plate", 10]
-            ]
-        },
-        {
-            "name": "Alternate: Molded Steel Plate",
-            "key_name": "alt-molded-steel-plate",
-            "category": "smelting2",
-            "time": 15,
-            "ingredients": [
-                ["steel-ingot", 5],
-                ["concrete", 3]
-            ],
-            "products": [
-                ["iron-plate", 15]
             ]
         },
         {
@@ -1853,32 +1845,6 @@
             ]
         },
         {
-            "name": "Alternate: Heate-Fused Reinforced Iron Plate",
-            "key_name": "alt-heate-fused-iron-plate",
-            "category": "smelting2",
-            "time": 48,
-            "ingredients": [
-                ["iron-plate", 24],
-                ["packaged-fuel", 1]
-            ],
-            "products": [
-                ["reinforced-iron-plate", 10]
-            ]
-        },
-        {
-            "name": "Alternate: Thermite Welded Plate",
-            "key_name": "alt-thermite-welded-plate",
-            "category": "crafting2",
-            "time": 12,
-            "ingredients": [
-                ["iron-plate", 12],
-                ["aluminum-powder", 4]
-            ],
-            "products": [
-                ["reinforced-iron-plate", 4]
-            ]
-        },
-        {
             "name": "Rotor",
             "key_name": "rotor",
             "category": "crafting2",
@@ -1954,33 +1920,6 @@
             ],
             "products": [
                 ["modular-frame", 2]
-            ]
-        },
-        {
-            "name": "Alternate: Heated Modular Frame",
-            "key_name": "alt-heated-modular-frame",
-            "category": "blending",
-            "time": 48,
-            "ingredients": [
-                ["reinforced-iron-plate", 2],
-                ["steel-ingot", 8],
-                ["fuel", 2.5]
-            ],
-            "products": [
-                ["modular-frame", 3]
-            ]
-        },
-        {
-            "name": "Alternate: Thermite-Welded Frame",
-            "key_name": "alt-thermite-welded-frame",
-            "category": "crafting2",
-            "time": 6,
-            "ingredients": [
-                ["reinforced-iron-plate", 1],
-                ["aluminum-powder", 4]
-            ],
-            "products": [
-                ["modular-frame", 1]
             ]
         },
         {
@@ -2205,20 +2144,6 @@
             ]
         },
         {
-            "name": "Alternate: Desulfation (Fuel)",
-            "key_name": "alt-desulfation-fuel",
-            "category": "refining",
-            "time": 12,
-            "ingredients": [
-                ["silica", 10],
-                ["heavy-oil-residue", 5]
-            ],
-            "products": [
-                ["fuel", 10],
-                ["sulfur", 10]
-            ]
-        },
-        {
             "name": "Rubber",
             "key_name": "rubber",
             "category": "refining",
@@ -2267,20 +2192,6 @@
             ],
             "products": [
                 ["petroleum-coke", 12]
-            ]
-        },
-        {
-            "name": "Alternate: Desulfation (Petroleum Coke)",
-            "key_name": "alt-desulfation-coke",
-            "category": "refining",
-            "time": 12,
-            "ingredients": [
-                ["silica", 10],
-                ["heavy-oil-residue", 5]
-            ],
-            "products": [
-                ["petroleum-coke", 15],
-                ["sulfur", 5]
             ]
         },
         {
@@ -2352,20 +2263,6 @@
             ],
             "products": [
                 ["heavy-modular-frame", 1]
-            ]
-        },
-        {
-            "name": "Alternate: Heated Heavy Frame",
-            "key_name": "alt-heated-heavy-frame",
-            "category": "blending",
-            "time": 48,
-            "ingredients": [
-                ["modular-frame", 8],
-                ["encased-industrial-beam", 16],
-                ["fuel", 5]
-            ],
-            "products": [
-                ["heavy-modular-frame", 3]
             ]
         },
         {
@@ -2453,12 +2350,12 @@
             "category": "blending",
             "time": 20,
             "ingredients": [
-                ["iron-ore", 9],
+                ["caterium-ore", 9],
                 ["nitrogen-gas", 4.5],
                 ["sulfuric-acid", 0.75]
             ],
             "products": [
-                ["iron-ingot", 24],
+                ["caterium-ingot", 24],
                 ["nitric-acid", 1.12]
             ]
         },
@@ -2865,19 +2762,6 @@
             ]
         },
         {
-            "name": "Alternate: Compacted Coke",
-            "key_name": "alt-coke",
-            "category": "crafting2",
-            "time": 12,
-            "ingredients": [
-                ["petroleum-coke", 10],
-                ["sulfur", 5]
-            ],
-            "products": [
-                ["compacted-coal", 5]
-            ]
-        },
-        {
             "name": "Alternate: Charcoal",
             "key_name": "alt-charcoal",
             "category": "crafting1",
@@ -3048,30 +2932,6 @@
             ],
             "products": [
                 ["alclad-aluminum-sheet", 3]
-            ]
-        },
-        {
-            "name": "Aluminum Scrap Grinding",
-            "key_name": "aluminum-scrap-grinding",
-            "category": "crafting1",
-            "time": 4.8,
-            "ingredients": [
-                ["aluminum-scrap", 4]
-            ],
-            "products": [
-                ["aluminum-powder", 4]
-            ]
-        },
-        {
-            "name": "Aluminum Ingot Grinding",
-            "key_name": "aluminum-ingot-grinding",
-            "category": "crafting1",
-            "time": 4.8,
-            "ingredients": [
-                ["aluminum-ingot", 2]
-            ],
-            "products": [
-                ["aluminum-powder", 4]
             ]
         },
         {
@@ -3869,84 +3729,6 @@
             ]
         },
         {
-            "name": "Packaged Dissolved Silica",
-            "key_name": "packaged-dissolved-silica",
-            "category": "packaging",
-            "time": 1,
-            "ingredients": [
-                ["dissolved-silica", 2],
-                ["empty-fluid-tank", 2]
-            ],
-            "products": [
-                ["packaged-dissolved-silica", 2]
-            ]
-        },
-        {
-            "name": "Unpackage Dissolved Silica",
-            "key_name": "unpackage-dissolved-silica",
-            "category": "packaging",
-            "time": 1,
-            "ingredients": [
-                ["packaged-dissolved-silica", 2]
-            ],
-            "products": [
-                ["dissolved-silica", 2],
-                ["empty-fluid-tank", 2]
-            ]
-        },
-        {
-            "name": "Packaged Dark Matter Residue",
-            "key_name": "packaged-dark-matter-residue",
-            "category": "packaging",
-            "time": 8,
-            "ingredients": [
-                ["dark-matter-residue", 16],
-                ["pressure-conversion-cube", 1]
-            ],
-            "products": [
-                ["packaged-dark-matter-residue", 1]
-            ]
-        },
-        {
-            "name": "Unpackage Dark Matter Residue",
-            "key_name": "unpackage-dark-matter-residue",
-            "category": "packaging",
-            "time": 8,
-            "ingredients": [
-                ["packaged-dark-matter-residue", 1]
-            ],
-            "products": [
-                ["dark-matter-residue", 16],
-                ["pressure-conversion-cube", 1]
-            ]
-        },
-        {
-            "name": "Packaged Excited Photonic Matter",
-            "key_name": "packaged-excited-photonic-matter",
-            "category": "packaging",
-            "time": 8,
-            "ingredients": [
-                ["excited-photonic-matter", 16],
-                ["pressure-conversion-cube", 1]
-            ],
-            "products": [
-                ["packaged-excited-photonic-matter", 1]
-            ]
-        },
-        {
-            "name": "Unpackage Excited Photonic Matter",
-            "key_name": "unpackage-excited-photonic-matter",
-            "category": "packaging",
-            "time": 8,
-            "ingredients": [
-                ["packaged-excited-photonic-matter", 1]
-            ],
-            "products": [
-                ["excited-photonic-matter", 16],
-                ["pressure-conversion-cube", 1]
-            ]
-        },
-        {
             "name": "Liquid Biofuel",
             "key_name": "liquid-biofuel",
             "category": "refining",
@@ -4280,22 +4062,6 @@
             ]
         },
         {
-            "name": "Alternate: Encoded Nuclear Pasta",
-            "key_name": "alt-encoded-nuclear-pasta",
-            "category": "encoding",
-            "time": 60,
-            "ingredients": [
-                ["excited-photonic-matter", 25],
-                ["pressure-conversion-cube", 1],
-                ["copper-powder", 100],
-                ["dark-matter-crystal", 6]
-            ],
-            "products": [
-                ["nuclear-pasta", 1],
-                ["dark-matter-residue", 25]
-            ]
-        },
-        {
             "name": "Alternate: Automated Miner",
             "key_name": "automated-miner",
             "category": "crafting2",
@@ -4321,32 +4087,6 @@
             ]
         },
         {
-            "name": "Alternate: Converted SAM",
-            "key_name": "alt-converted-sam",
-            "category": "converting",
-            "time": 32,
-            "ingredients": [
-                ["sam", 32]
-            ],
-            "products": [
-                ["reanimated-sam", 12],
-                ["dark-matter-residue", 8]
-            ]
-        },
-        {
-            "name": "Alternate: Controlled SAM",
-            "key_name": "alt-controlled-sam",
-            "category": "crafting2",
-            "time": 8,
-            "ingredients": [
-                ["sam", 16],
-                ["em-control-rod", 1]
-            ],
-            "products": [
-                ["reanimated-sam", 16]
-            ]
-        },
-        {
             "name": "SAM Fluctuator",
             "key_name": "sam-fluctuator",
             "category": "crafting3",
@@ -4358,19 +4098,6 @@
             ],
             "products": [
                 ["sam-fluctuator", 1]
-            ]
-        },
-        {
-            "name": "Alternate: SAM Oscillator",
-            "key_name": "alt-sam-oscillator",
-            "category": "crafting2",
-            "time": 6,
-            "ingredients": [
-                ["reanimated-sam", 6],
-                ["crystal-oscillator", 1]
-            ],
-            "products": [
-                ["sam-fluctuator", 2]
             ]
         },
         {
@@ -4466,20 +4193,6 @@
             ]
         },
         {
-            "name": "Alternate: Liquid Turbo Diamonds",
-            "key_name": "alt-liquid-turbo-diamonds",
-            "category": "accelerating",
-            "time": 3,
-            "power_range": [250, 750],
-            "ingredients": [
-                ["coal", 30],
-                ["turbofuel", 2]
-            ],
-            "products": [
-                ["diamonds", 3]
-            ]
-        },
-        {
             "name": "Alternate: Oil-Based Diamonds",
             "key_name": "alt-diamonds-oil",
             "category": "accelerating",
@@ -4529,22 +4242,6 @@
             ],
             "products": [
                 ["time-crystal", 1]
-            ]
-        },
-        {
-            "name": "Time Crystal",
-            "key_name": "time-crystal",
-            "category": "encoding",
-            "time": 60,
-            "ingredients": [
-                ["excited-photonic-matter", 5],
-                ["time-crystal", 195],
-                ["diamonds", 2],
-                ["dark-matter-crystal", 2]
-            ],
-            "products": [
-                ["time-crystal", 200],
-                ["dark-matter-residue", 5]
             ]
         },
         {
@@ -4694,22 +4391,6 @@
             ]
         },
         {
-            "name": "Alternate: Quantum Fluctuator",
-            "key_name": "alt-quantum-fluctuator",
-            "category": "encoding",
-            "time": 12,
-            "ingredients": [
-                ["sam-fluctuator", 1],
-                ["crystal-oscillator", 1],
-                ["alclad-aluminum-sheet", 9],
-                ["excited-photonic-matter", 25]
-            ],
-            "products": [
-                ["superposition-oscillator", 2],
-                ["dark-matter-residue", 25]
-            ]
-        },
-        {
             "name": "Neural-Quantum Processor",
             "key_name": "neural-quantum-processor",
             "category": "encoding",
@@ -4739,22 +4420,6 @@
             "products": [
                 ["ficsonium-fuel-rod", 1],
                 ["dark-matter-residue", 20]
-            ]
-        },
-        {
-            "name": "Alternate: Ionized Ficsonium Fuel Rod",
-            "key_name": "alt-ionized-ficsonium-fuel-rod",
-            "category": "encoding",
-            "time": 24,
-            "ingredients": [
-                ["ficsonium", 1],
-                ["ficsite-trigon", 40],
-                ["em-control-rod", 2],
-                ["ionized-fuel", 20]
-            ],
-            "products": [
-                ["ficsonium-fuel-rod", 1],
-                ["dark-matter-residue", 32.5]
             ]
         },
         {
@@ -4802,21 +4467,6 @@
             ]
         },
         {
-            "name": "Alternate: Encoded Ionized Fuel",
-            "key_name": "alt-encoded-ionized-fuel",
-            "category": "encoding",
-            "time": 15,
-            "ingredients": [
-                ["rocket-fuel", 50],
-                ["time-crystal", 1],
-                ["dark-matter-crystal", 5]
-            ],
-            "products": [
-                ["ionized-fuel", 50],
-                ["compacted-coal", 6]
-            ]
-        },
-        {
             "name": "Singularity Cell",
             "key_name": "singularity-cell",
             "category": "crafting3",
@@ -4829,21 +4479,6 @@
             ],
             "products": [
                 ["singularity-cell", 10]
-            ]
-        },
-        {
-            "name": "Alternate: Fisconium Singularity Cell",
-            "key_name": "singularity-cell",
-            "category": "crafting3",
-            "time": 60,
-            "ingredients": [
-                ["nuclear-pasta", 2],
-                ["crystal-oscillator", 2],
-                ["ficsonium", 2],
-                ["em-control-rod", 4]
-            ],
-            "products": [
-                ["singularity-cell", 32]
             ]
         },
         {
@@ -5138,6 +4773,401 @@
             ],
             "products": [
                 ["plutonium-waste", 10]
+            ]
+        },
+        {
+            "name": "Alternate: Compacted Coke",
+            "key_name": "alt-coke",
+            "category": "crafting2",
+            "time": 12,
+            "ingredients": [
+                ["petroleum-coke", 10],
+                ["sulfur", 5]
+            ],
+            "products": [
+                ["compacted-coal", 5]
+            ]
+        },
+        {
+            "name": "Thermoextracted Sulfur",
+            "key_name": "thermoextracted-sulfur",
+            "category": "refining",
+            "time": 10,
+            "ingredients": [
+                ["sulfuric-acid", 20]
+            ],
+            "products": [
+                ["sulfur", 5]
+            ]
+        },
+        {
+            "name": "Alternate: Liquid Turbo Diamonds",
+            "key_name": "alt-liquid-turbo-diamonds",
+            "category": "accelerating",
+            "time": 3,
+            "power_range": [250, 750],
+            "ingredients": [
+                ["coal", 30],
+                ["turbofuel", 2]
+            ],
+            "products": [
+                ["diamonds", 3]
+            ]
+        },
+        {
+            "name": "Alternate: Molded Steel Plate",
+            "key_name": "alt-molded-steel-plate",
+            "category": "smelting2",
+            "time": 15,
+            "ingredients": [
+                ["steel-ingot", 5],
+                ["concrete", 3]
+            ],
+            "products": [
+                ["iron-plate", 15]
+            ]
+        },
+        {
+            "name": "Packaged Dissolved Silica",
+            "key_name": "packaged-dissolved-silica",
+            "category": "packaging",
+            "time": 1,
+            "ingredients": [
+                ["dissolved-silica", 2],
+                ["empty-canister", 2]
+            ],
+            "products": [
+                ["packaged-dissolved-silica", 2]
+            ]
+        },
+        {
+            "name": "Unpackage Dissolved Silica",
+            "key_name": "unpackage-dissolved-silica",
+            "category": "packaging",
+            "time": 1,
+            "ingredients": [
+                ["packaged-dissolved-silica", 2]
+            ],
+            "products": [
+                ["dissolved-silica", 2],
+                ["empty-canister", 2]
+            ]
+        },
+        {
+            "name": "Packaged Dark Matter Residue",
+            "key_name": "packaged-dark-matter-residue",
+            "category": "packaging",
+            "time": 8,
+            "ingredients": [
+                ["dark-matter-residue", 16],
+                ["pressure-conversion-cube", 1]
+            ],
+            "products": [
+                ["packaged-dark-matter-residue", 1]
+            ]
+        },
+        {
+            "name": "Unpackage Dark Matter Residue",
+            "key_name": "unpackage-dark-matter-residue",
+            "category": "packaging",
+            "time": 8,
+            "ingredients": [
+                ["packaged-dark-matter-residue", 1]
+            ],
+            "products": [
+                ["dark-matter-residue", 16],
+                ["pressure-conversion-cube", 1]
+            ]
+        },
+        {
+            "name": "Packaged Excited Photonic Matter",
+            "key_name": "packaged-excited-photonic-matter",
+            "category": "packaging",
+            "time": 8,
+            "ingredients": [
+                ["excited-photonic-matter", 16],
+                ["pressure-conversion-cube", 1]
+            ],
+            "products": [
+                ["packaged-excited-photonic-matter", 1]
+            ]
+        },
+        {
+            "name": "Unpackage Excited Photonic Matter",
+            "key_name": "unpackage-excited-photonic-matter",
+            "category": "packaging",
+            "time": 8,
+            "ingredients": [
+                ["packaged-excited-photonic-matter", 1]
+            ],
+            "products": [
+                ["excited-photonic-matter", 16],
+                ["pressure-conversion-cube", 1]
+            ]
+        },
+        {
+            "name": "Alternate: Solid Coke Steel Ingot",
+            "key_name": "alt-solid-coke-steel-ingot",
+            "category": "smelting2",
+            "time": 6,
+            "ingredients": [
+                ["iron-ingot", 8],
+                ["petroleum-coke", 9]
+            ],
+            "products": [
+                ["steel-ingot", 12]
+            ]
+        },
+        {
+            "name": "Alternate: Heate-Fused Reinforced Iron Plate",
+            "key_name": "alt-heate-fused-iron-plate",
+            "category": "smelting2",
+            "time": 48,
+            "ingredients": [
+                ["iron-plate", 24],
+                ["packaged-fuel", 1]
+            ],
+            "products": [
+                ["reinforced-iron-plate", 10]
+            ]
+        },
+        {
+            "name": "Alternate: Heated Modular Frame",
+            "key_name": "alt-heated-modular-frame",
+            "category": "blending",
+            "time": 48,
+            "ingredients": [
+                ["reinforced-iron-plate", 2],
+                ["steel-ingot", 8],
+                ["fuel", 2.5]
+            ],
+            "products": [
+                ["modular-frame", 3]
+            ]
+        },
+        {
+            "name": "Alternate: Desulfation (Fuel)",
+            "key_name": "alt-desulfation-fuel",
+            "category": "refining",
+            "time": 12,
+            "ingredients": [
+                ["silica", 10],
+                ["heavy-oil-residue", 5]
+            ],
+            "products": [
+                ["fuel", 10],
+                ["sulfur", 10]
+            ]
+        },
+        {
+            "name": "Alternate: Desulfation (Petroleum Coke)",
+            "key_name": "alt-desulfation-coke",
+            "category": "refining",
+            "time": 12,
+            "ingredients": [
+                ["silica", 10],
+                ["heavy-oil-residue", 5]
+            ],
+            "products": [
+                ["petroleum-coke", 15],
+                ["sulfur", 5]
+            ]
+        },
+        {
+            "name": "Alternate: Heated Heavy Frame",
+            "key_name": "alt-heated-heavy-frame",
+            "category": "blending",
+            "time": 48,
+            "ingredients": [
+                ["modular-frame", 8],
+                ["encased-industrial-beam", 16],
+                ["fuel", 5]
+            ],
+            "products": [
+                ["heavy-modular-frame", 3]
+            ]
+        },
+        {
+            "name": "Alternate: Encoded Nuclear Pasta",
+            "key_name": "alt-encoded-nuclear-pasta",
+            "category": "encoding",
+            "time": 60,
+            "ingredients": [
+                ["excited-photonic-matter", 25],
+                ["pressure-conversion-cube", 1],
+                ["copper-powder", 100],
+                ["dark-matter-crystal", 6]
+            ],
+            "products": [
+                ["nuclear-pasta", 1],
+                ["dark-matter-residue", 25]
+            ]
+        },
+        {
+            "name": "Alternate: Converted SAM",
+            "key_name": "alt-converted-sam",
+            "category": "converting",
+            "time": 32,
+            "ingredients": [
+                ["sam", 32]
+            ],
+            "products": [
+                ["reanimated-sam", 12],
+                ["dark-matter-residue", 8]
+            ]
+        },
+        {
+            "name": "Alternate: Controlled SAM",
+            "key_name": "alt-controlled-sam",
+            "category": "crafting2",
+            "time": 8,
+            "ingredients": [
+                ["sam", 16],
+                ["em-control-rod", 1]
+            ],
+            "products": [
+                ["reanimated-sam", 16]
+            ]
+        },
+        {
+            "name": "Alternate: SAM Oscillator",
+            "key_name": "alt-sam-oscillator",
+            "category": "crafting2",
+            "time": 6,
+            "ingredients": [
+                ["reanimated-sam", 6],
+                ["crystal-oscillator", 1]
+            ],
+            "products": [
+                ["sam-fluctuator", 2]
+            ]
+        },
+        {
+            "name": "Alternate: Encoded Time Crystal",
+            "key_name": "alt-encoded-time-crystal",
+            "category": "encoding",
+            "time": 60,
+            "ingredients": [
+                ["excited-photonic-matter", 5],
+                ["time-crystal", 195],
+                ["diamonds", 2],
+                ["dark-matter-crystal", 2]
+            ],
+            "products": [
+                ["time-crystal", 200],
+                ["dark-matter-residue", 5]
+            ]
+        },
+        {
+            "name": "Alternate: Quantum Fluctuator",
+            "key_name": "alt-quantum-fluctuator",
+            "category": "encoding",
+            "time": 12,
+            "ingredients": [
+                ["sam-fluctuator", 1],
+                ["crystal-oscillator", 1],
+                ["alclad-aluminum-sheet", 9],
+                ["excited-photonic-matter", 25]
+            ],
+            "products": [
+                ["superposition-oscillator", 2],
+                ["dark-matter-residue", 25]
+            ]
+        },
+        {
+            "name": "Alternate: Ionized Ficsonium Fuel Rod",
+            "key_name": "alt-ionized-ficsonium-fuel-rod",
+            "category": "encoding",
+            "time": 24,
+            "ingredients": [
+                ["ficsonium", 1],
+                ["ficsite-trigon", 40],
+                ["em-control-rod", 2],
+                ["ionized-fuel", 20]
+            ],
+            "products": [
+                ["ficsonium-fuel-rod", 1],
+                ["dark-matter-residue", 32.5]
+            ]
+        },
+        {
+            "name": "Alternate: Encoded Ionized Fuel",
+            "key_name": "alt-encoded-ionized-fuel",
+            "category": "encoding",
+            "time": 15,
+            "ingredients": [
+                ["rocket-fuel", 50],
+                ["time-crystal", 1],
+                ["dark-matter-crystal", 5]
+            ],
+            "products": [
+                ["ionized-fuel", 50],
+                ["compacted-coal", 6]
+            ]
+        },
+        {
+            "name": "Alternate: Fisconium Singularity Cell",
+            "key_name": "alt-fisc-singularity-cell",
+            "category": "crafting3",
+            "time": 60,
+            "ingredients": [
+                ["nuclear-pasta", 2],
+                ["crystal-oscillator", 2],
+                ["ficsonium", 2],
+                ["em-control-rod", 4]
+            ],
+            "products": [
+                ["singularity-cell", 32]
+            ]
+        },
+        {
+            "name": "Aluminum Scrap Grinding",
+            "key_name": "aluminum-scrap-grinding",
+            "category": "crafting1",
+            "time": 4.8,
+            "ingredients": [
+                ["aluminum-scrap", 4]
+            ],
+            "products": [
+                ["aluminum-powder", 4]
+            ]
+        },
+        {
+            "name": "Aluminum Ingot Grinding",
+            "key_name": "aluminum-ingot-grinding",
+            "category": "crafting1",
+            "time": 4.8,
+            "ingredients": [
+                ["aluminum-ingot", 2]
+            ],
+            "products": [
+                ["aluminum-powder", 4]
+            ]
+        },
+        {
+            "name": "Alternate: Thermite Welded Plate",
+            "key_name": "alt-thermite-welded-plate",
+            "category": "crafting2",
+            "time": 12,
+            "ingredients": [
+                ["iron-plate", 12],
+                ["aluminum-powder", 4]
+            ],
+            "products": [
+                ["reinforced-iron-plate", 4]
+            ]
+        },
+        {
+            "name": "Alternate: Thermite-Welded Frame",
+            "key_name": "alt-thermite-welded-frame",
+            "category": "crafting2",
+            "time": 6,
+            "ingredients": [
+                ["reinforced-iron-plate", 1],
+                ["aluminum-powder", 4]
+            ],
+            "products": [
+                ["modular-frame", 1]
             ]
         }
     ],
