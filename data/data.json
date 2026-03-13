@@ -2618,6 +2618,19 @@
             ]
         },
         {
+            "name": "Alternate: Compacted Coke",
+            "key_name": "alt-coke",
+            "category": "crafting2",
+            "time": 12,
+            "ingredients": [
+                ["petroleum-coke", 10],
+                ["sulfur", 5]
+            ],
+            "products": [
+                ["compacted-coal", 5]
+            ]
+        },
+        {
             "name": "Alternate: Charcoal",
             "key_name": "alt-charcoal",
             "category": "crafting1",
