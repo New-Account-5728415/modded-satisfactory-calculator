@@ -3815,6 +3815,58 @@
             ]
         },
         {
+            "name": "Packaged Dark Matter Residue",
+            "key_name": "packaged-dark-matter-residue",
+            "category": "packaging",
+            "time": 8,
+            "ingredients": [
+                ["dark-matter-residue", 16],
+                ["pressure-conversion-cube", 1]
+            ],
+            "products": [
+                ["packaged-dark-matter-residue", 1]
+            ]
+        },
+        {
+            "name": "Unpackage Dark Matter Residue",
+            "key_name": "unpackage-dark-matter-residue",
+            "category": "packaging",
+            "time": 8,
+            "ingredients": [
+                ["packaged-dark-matter-residue", 1]
+            ],
+            "products": [
+                ["dark-matter-residue", 16],
+                ["pressure-conversion-cube", 1]
+            ]
+        },
+        {
+            "name": "Packaged Excited Photonic Matter",
+            "key_name": "packaged-excited-photonic-matter",
+            "category": "packaging",
+            "time": 8,
+            "ingredients": [
+                ["excited-photonic-matter", 16],
+                ["pressure-conversion-cube", 1]
+            ],
+            "products": [
+                ["packaged-excited-photonic-matter", 1]
+            ]
+        },
+        {
+            "name": "Unpackage Excited Photonic Matter",
+            "key_name": "unpackage-excited-photonic-matter",
+            "category": "packaging",
+            "time": 8,
+            "ingredients": [
+                ["packaged-excited-photonic-matter", 1]
+            ],
+            "products": [
+                ["excited-photonic-matter", 16],
+                ["pressure-conversion-cube", 1]
+            ]
+        },
+        {
             "name": "Liquid Biofuel",
             "key_name": "liquid-biofuel",
             "category": "refining",
