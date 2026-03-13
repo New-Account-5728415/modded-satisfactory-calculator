@@ -3792,26 +3792,26 @@
             "name": "Packaged Dissolved Silica",
             "key_name": "packaged-dissolved-silica",
             "category": "packaging",
-            "time": 2,
+            "time": 1,
             "ingredients": [
-                ["dissolved-silica", 1],
-                ["empty-fluid-tank", 1]
+                ["dissolved-silica", 2],
+                ["empty-fluid-tank", 2]
             ],
             "products": [
-                ["packaged-dissolved-silica", 1]
+                ["packaged-dissolved-silica", 2]
             ]
         },
         {
             "name": "Unpackage Dissolved Silica",
             "key_name": "unpackage-dissolved-silica",
             "category": "packaging",
-            "time": 3,
+            "time": 1,
             "ingredients": [
-                ["packaged-dissolved-silica", 1]
+                ["packaged-dissolved-silica", 2]
             ],
             "products": [
-                ["dissolved-silica", 1],
-                ["empty-fluid-tank", 1]
+                ["dissolved-silica", 2],
+                ["empty-fluid-tank", 2]
             ]
         },
         {
