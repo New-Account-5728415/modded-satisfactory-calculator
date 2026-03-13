@@ -572,6 +572,12 @@
             "stack_size": 100
         },
         {
+            "name": "Aluminum Powder",
+            "key_name": "aluminum-powder",
+            "tier": 7,
+            "stack_size": 500
+        },
+        {
             "name": "Heat Sink",
             "key_name": "heat-sink",
             "tier": 8,
@@ -2782,6 +2788,30 @@
             ],
             "products": [
                 ["alclad-aluminum-sheet", 3]
+            ]
+        },
+        {
+            "name": "Aluminum Scrap Grinding",
+            "key_name": "aluminum-scrap-grinding",
+            "category": "crafting1",
+            "time": 4.8,
+            "ingredients": [
+                ["aluminum-scrap", 4]
+            ],
+            "products": [
+                ["aluminum-powder", 4]
+            ]
+        },
+        {
+            "name": "Aluminum Ingot Grinding",
+            "key_name": "aluminum-ingot-grinding",
+            "category": "crafting1",
+            "time": 4.8,
+            "ingredients": [
+                ["aluminum-ingot", 2]
+            ],
+            "products": [
+                ["aluminum-powder", 4]
             ]
         },
         {
