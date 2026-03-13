@@ -1266,6 +1266,19 @@
             ]
         },
         {
+            "name": "Alternate: Solid Coke Steel Ingot",
+            "key_name": "alt-solid-coke-steel-ingot",
+            "category": "smelting2",
+            "time": 6,
+            "ingredients": [
+                ["iron-ingot", 8],
+                ["petroleum-coke", 9]
+            ],
+            "products": [
+                ["steel-ingot", 12]
+            ]
+        },
+        {
             "name": "Iron Plate",
             "key_name": "iron-plate",
             "category": "crafting1",
