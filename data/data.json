@@ -196,7 +196,7 @@
         {
             "name": "Coal",
             "key_name": "coal",
-            "tier": 3,
+            "tier": 0,
             "stack_size": 100
         },
         {
@@ -214,20 +214,20 @@
         {
             "name": "Steel Ingot",
             "key_name": "steel-ingot",
-            "tier": 4,
+            "tier": 3,
             "stack_size": 100
         },
         {
             "name": "Iron Plate",
             "key_name": "iron-plate",
             "tier": -1,
-            "stack_size": 100
+            "stack_size": 200
         },
         {
             "name": "Iron Rod",
             "key_name": "iron-rod",
             "tier": -1,
-            "stack_size": 100
+            "stack_size": 200
         },
         {
             "name": "Wire",
@@ -239,7 +239,7 @@
             "name": "Cable",
             "key_name": "cable",
             "tier": 0,
-            "stack_size": 100
+            "stack_size": 200
         },
         {
             "name": "Biomass",
@@ -251,7 +251,7 @@
             "name": "Concrete",
             "key_name": "concrete",
             "tier": 0,
-            "stack_size": 100
+            "stack_size": 500
         },
         {
             "name": "Leaves",
@@ -275,43 +275,43 @@
             "name": "Wood",
             "key_name": "wood",
             "tier": -1,
-            "stack_size": 100
+            "stack_size": 200
         },
         {
             "name": "Hog Remains",
             "key_name": "hog-remains",
             "tier": -1,
-            "stack_size": 100
+            "stack_size": 50
         },
         {
             "name": "Spitter Remains",
             "key_name": "spitter-remains",
             "tier": -1,
-            "stack_size": 100
+            "stack_size": 50
         },
         {
             "name": "Stinger Remains",
             "key_name": "stinger-remains",
             "tier": -1,
-            "stack_size": 100
+            "stack_size": 50
         },
         {
             "name": "Hatcher Remains",
             "key_name": "hatcher-remains",
             "tier": -1,
-            "stack_size": 100
+            "stack_size": 50
         },
         {
             "name": "Alien Protein",
             "key_name": "alien-protein",
-            "tier": -1,
+            "tier": 1,
             "stack_size": 100
         },
         {
             "name": "Alien DNA Capsule",
             "key_name": "alien-dna-capsule",
-            "tier": -1,
-            "stack_size": 100
+            "tier": 1,
+            "stack_size": 50
         },
         {
             "name": "Blue Power Slug",
@@ -323,18 +323,18 @@
             "name": "Yellow Power Slug",
             "key_name": "yellow-power-slug",
             "tier": -1,
-            "stack_size": 100
+            "stack_size": 50
         },
         {
             "name": "Purple Power Slug",
             "key_name": "purple-power-slug",
             "tier": -1,
-            "stack_size": 100
+            "stack_size": 50
         },
         {
             "name": "Power Shard",
             "key_name": "power-shard",
-            "tier": -1,
+            "tier": 9,
             "stack_size": 100
         },
         {
@@ -352,14 +352,14 @@
         {
             "name": "Steel Beam",
             "key_name": "steel-beam",
-            "tier": 4,
-            "stack_size": 100
+            "tier": 3,
+            "stack_size": 200
         },
         {
             "name": "Steel Pipe",
             "key_name": "steel-pipe",
-            "tier": 4,
-            "stack_size": 100
+            "tier": 3,
+            "stack_size": 200
         },
         {
             "name": "Reinforced Iron Plate",
@@ -407,49 +407,49 @@
             "name": "Plastic",
             "key_name": "plastic",
             "tier": 5,
-            "stack_size": 100
+            "stack_size": 200
         },
         {
             "name": "Rubber",
             "key_name": "rubber",
             "tier": 5,
-            "stack_size": 100
+            "stack_size": 200
         },
         {
             "name": "Heavy Modular Frame",
             "key_name": "heavy-modular-frame",
             "tier": 4,
-            "stack_size": 100
+            "stack_size": 50
         },
         {
             "name": "Computer",
             "key_name": "computer",
             "tier": 5,
-            "stack_size": 100
+            "stack_size": 50
         },
         {
             "name": "Caterium Ore",
             "key_name": "caterium-ore",
-            "tier": 3,
+            "tier": 0,
             "stack_size": 100
         },
         {
             "name": "Caterium Ingot",
             "key_name": "caterium-ingot",
-            "tier": 3,
+            "tier": 1,
             "stack_size": 100
         },
         {
             "name": "Quickwire",
             "key_name": "quickwire",
-            "tier": 3,
+            "tier": 1,
             "stack_size": 500
         },
         {
             "name": "Supercomputer",
             "key_name": "supercomputer",
-            "tier": 5,
-            "stack_size": 100
+            "tier": 7,
+            "stack_size": 50
         },
         {
             "name": "High-Speed Connector",
@@ -472,91 +472,91 @@
         {
             "name": "Gas Filter",
             "key_name": "filter",
-            "tier": 6,
-            "stack_size": 100
+            "tier": 1,
+            "stack_size": 50
         },
         {
             "name": "Raw Quartz",
             "key_name": "raw-quartz",
-            "tier": 4,
+            "tier": -1,
             "stack_size": 100
         },
         {
             "name": "Quartz Crystal",
             "key_name": "quartz-crystal",
-            "tier": 4,
-            "stack_size": 100
+            "tier": 1,
+            "stack_size": 200
         },
         {
             "name": "Crystal Oscillator",
             "key_name": "crystal-oscillator",
-            "tier": 4,
+            "tier": 6,
             "stack_size": 100
         },
         {
             "name": "Sulfur",
             "key_name": "sulfur",
-            "tier": 4,
+            "tier": -1,
             "stack_size": 100
         },
         {
             "name": "Black Powder",
             "key_name": "black-powder",
-            "tier": 4,
-            "stack_size": 100
+            "tier": 2,
+            "stack_size": 200
         },
         {
             "name": "Smokeless Powder",
             "key_name": "smokeless-powder",
-            "tier": 4,
+            "tier": 5,
             "stack_size": 100
         },
         {
             "name": "Nobelisk",
             "key_name": "nobelisk",
-            "tier": 11,
+            "tier": 3,
             "stack_size": 50
         },
         {
             "name": "Gas Nobelisk",
             "key_name": "gas-nobelisk",
-            "tier": 11,
+            "tier": 3,
             "stack_size": 50
         },
         {
             "name": "Pulse Nobelisk",
             "key_name": "pulse-nobelisk",
-            "tier": 11,
+            "tier": 6,
             "stack_size": 50
         },
         {
             "name": "Cluster Nobelisk",
             "key_name": "cluster-nobelisk",
-            "tier": 11,
+            "tier": 5,
             "stack_size": 50
         },
         {
             "name": "Nuke Nobelisk",
             "key_name": "nuke-nobelisk",
-            "tier": 11,
+            "tier": 8,
             "stack_size": 50
         },
         {
             "name": "Compacted Coal",
             "key_name": "compacted-coal",
-            "tier": 4,
+            "tier": 2,
             "stack_size": 100
         },
         {
             "name": "Silica",
             "key_name": "silica",
-            "tier": 4,
-            "stack_size": 100
+            "tier": 1,
+            "stack_size": 200
         },
         {
             "name": "Bauxite",
             "key_name": "bauxite",
-            "tier": 7,
+            "tier": 0,
             "stack_size": 100
         },
         {
@@ -569,7 +569,7 @@
             "name": "Alclad Aluminum Sheet",
             "key_name": "alclad-aluminum-sheet",
             "tier": 7,
-            "stack_size": 100
+            "stack_size": 200
         },
         {
             "name": "Aluminum Powder",
@@ -587,31 +587,31 @@
             "name": "Radio Control Unit",
             "key_name": "radio-control-unit",
             "tier": 7,
-            "stack_size": 100
+            "stack_size": 50
         },
         {
             "name": "Turbo Motor",
             "key_name": "turbo-motor",
-            "tier": 7,
-            "stack_size": 100
+            "tier": 8,
+            "stack_size": 50
         },
         {
             "name": "Battery",
             "key_name": "battery",
             "tier": 7,
-            "stack_size": 100
+            "stack_size": 200
         },
         {
             "name": "Uranium",
             "key_name": "uranium",
-            "tier": 8,
+            "tier": 0,
             "stack_size": 100
         },
         {
             "name": "Encased Uranium Cell",
             "key_name": "uranium-cell",
             "tier": 8,
-            "stack_size": 100
+            "stack_size": 200
         },
         {
             "name": "Electromagnetic Control Rod",
@@ -629,37 +629,37 @@
             "name": "Iodine Infused Filter",
             "key_name": "iodine-infused-filter",
             "tier": 7,
-            "stack_size": 100
+            "stack_size": 50
         },
         {
             "name": "Aluminum Scrap",
             "key_name": "aluminum-scrap",
             "tier": 7,
-            "stack_size": 100
+            "stack_size": 500
         },
         {
             "name": "Copper Sheet",
             "key_name": "copper-sheet",
             "tier": 2,
-            "stack_size": 100
+            "stack_size": 200
         },
         {
             "name": "Polymer Resin",
             "key_name": "polymer-resin",
             "tier": 5,
-            "stack_size": 100
+            "stack_size": 200
         },
         {
             "name": "Petroleum Coke",
             "key_name": "petroleum-coke",
             "tier": 5,
-            "stack_size": 100
+            "stack_size": 200
         },
         {
             "name": "Non-fissile Uranium",
             "key_name": "non-fissile-uranium",
             "tier": 8,
-            "stack_size": 100
+            "stack_size": 500
         },
         {
             "name": "Plutonium Pellet",
@@ -671,95 +671,109 @@
             "name": "Encased Plutonium Cell",
             "key_name": "encased-plutonium-cell",
             "tier": 8,
-            "stack_size": 100
+            "stack_size": 200
         },
         {
             "name": "Plutonium Fuel Rod",
             "key_name": "plutonium-fuel-rod",
             "tier": 8,
-            "stack_size": 100
+            "stack_size": 50
         },
         {
             "name": "Copper Powder",
             "key_name": "copper-powder",
             "tier": 8,
-            "stack_size": 100
+            "stack_size": 500
         },
         {
             "name": "Pressure Conversion Cube",
             "key_name": "pressure-conversion-cube",
             "tier": 8,
-            "stack_size": 100
+            "stack_size": 50
         },
         {
             "name": "Empty Canister",
             "key_name": "empty-canister",
-            "tier": 5
+            "tier": 5,
+            "stack_size": 100
         },
         {
             "name": "Packaged Water",
             "key_name": "packaged-water",
-            "tier": 5
+            "tier": 5,
+            "stack_size": 100
         },
         {
             "name": "Packaged Oil",
             "key_name": "packaged-oil",
-            "tier": 5
+            "tier": 5,
+            "stack_size": 100
         },
         {
             "name": "Packaged Fuel",
             "key_name": "packaged-fuel",
-            "tier": 5
+            "tier": 5,
+            "stack_size": 100
         },
         {
             "name": "Packaged Turbofuel",
             "key_name": "packaged-turbofuel",
-            "tier": 6
+            "tier": 6,
+            "stack_size": 100
         },
         {
             "name": "Packaged Heavy Oil Residue",
             "key_name": "packaged-heavy-oil-residue",
-            "tier": 5
+            "tier": 5,
+            "stack_size": 100
         },
         {
             "name": "Packaged Liquid Biofuel",
             "key_name": "packaged-liquid-biofuel",
-            "tier": 5
+            "tier": 5,
+            "stack_size": 100
         },
         {
             "name": "Packaged Alumina Solution",
             "key_name": "packaged-alumina-solution",
-            "tier": 7
+            "tier": 7,
+            "stack_size": 100
         },
         {
             "name": "Packaged Dissolved Silica",
             "key_name": "packaged-dissolved-silica",
-            "tier": 7
+            "tier": 7,
+            "stack_size": 100
         },
         {
             "name": "Packaged Sulfuric Acid",
             "key_name": "packaged-sulfuric-acid",
-            "tier": 7
+            "tier": 7,
+            "stack_size": 100
         },
         {
             "name": "Packaged Nitrogen Gas",
             "key_name": "packaged-nitrogen-gas",
-            "tier": 8
+            "tier": 8,
+            "stack_size": 100
         },
         {
             "name": "Packaged Nitric Acid",
             "key_name": "packaged-nitric-acid",
-            "tier": 8
+            "tier": 8,
+            "stack_size": 100
         },
         {
             "name": "Packaged Rocket Fuel",
             "key_name": "packaged-rocket-fuel",
-            "tier": 8
+            "tier": 8,
+            "stack_size": 100
         },
         {
             "name": "Packaged Ionized Fuel",
             "key_name": "packaged-ionized-fuel",
-            "tier": 8
+            "tier": 8,
+            "stack_size": 100
         },
         {
             "name": "Packaged Dark Matter Residue",
@@ -776,198 +790,236 @@
         {
             "name": "Smart Plating",
             "key_name": "smart-plating",
-            "tier": 2
+            "tier": 2,
+            "stack_size": 50
         },
         {
             "name": "Versatile Framework",
             "key_name": "versatile-framework",
-            "tier": 3
+            "tier": 3,
+            "stack_size": 50
         },
         {
             "name": "Automated Wiring",
             "key_name": "automated-wiring",
-            "tier": 4
+            "tier": 4,
+            "stack_size": 50
         },
         {
             "name": "Modular Engine",
             "key_name": "modular-engine",
-            "tier": 5
+            "tier": 6,
+            "stack_size": 50
         },
         {
             "name": "Adaptive Control Unit",
             "key_name": "adaptive-control-unit",
-            "tier": 5
+            "tier": 6,
+            "stack_size": 50
         },
         {
             "name": "Assembly Director System",
             "key_name": "assembly-director-system",
-            "tier": 7
+            "tier": 7,
+            "stack_size": 50
         },
         {
             "name": "Magnetic Field Generator",
             "key_name": "magnetic-field-generator",
-            "tier": 8
+            "tier": 8,
+            "stack_size": 50
         },
         {
             "name": "Thermal Propulsion Rocket",
             "key_name": "thermal-propulsion-rocket",
-            "tier": 8
+            "tier": 8,
+            "stack_size": 50
         },
         {
             "name": "Nuclear Pasta",
             "key_name": "nuclear-pasta",
             "tier": 8,
-            "stack_size": 100
+            "stack_size": 50
         },
         {
             "name": "Portable Miner",
             "key_name": "portable-miner",
-            "tier": 0
+            "tier": 2,
+            "stack_size": 50
         },
         {
             "name": "Aluminum Casing",
             "key_name": "aluminum-casing",
-            "tier": 7
+            "tier": 7,
+            "stack_size": 200
         },
         {
             "name": "Empty Fluid Tank",
             "key_name": "empty-fluid-tank",
-            "tier": 8
+            "tier": 8,
+            "stack_size": 100
         },
         {
             "name": "Cooling System",
             "key_name": "cooling-system",
-            "tier": 8
+            "tier": 8,
+            "stack_size": 100
         },
         {
             "name": "Fused Modular Frame",
             "key_name": "fused-modular-frame",
-            "tier": 8
+            "tier": 8,
+            "stack_size": 50
         },
         {
             "name": "Uranium Waste",
             "key_name": "uranium-waste",
-            "tier": 8
+            "tier": 8,
+            "stack_size": 500
         },
         {
             "name": "Plutonium Waste",
             "key_name": "plutonium-waste",
-            "tier": 8
+            "tier": 8,
+            "stack_size": 500
         },
         {
             "name": "SAM",
             "key_name": "sam",
-            "tier": 10
+            "tier": 1,
+            "stack_size": 100
         },
         {
             "name": "Reanimated SAM",
             "key_name": "reanimated-sam",
-            "tier": 10
+            "tier": 1,
+            "stack_size": 100
         },
         {
             "name": "SAM Fluctuator",
             "key_name": "sam-fluctuator",
-            "tier": 10
+            "tier": 6,
+            "stack_size": 100
         },
         {
             "name": "Iron Rebar",
             "key_name": "iron-rebar",
-            "tier": 11
+            "tier": 1,
+            "stack_size": 100
         },
         {
             "name": "Stun Rebar",
             "key_name": "stun-rebar",
-            "tier": 11
+            "tier": 1,
+            "stack_size": 100
         },
         {
             "name": "Shatter Rebar",
             "key_name": "shatter-rebar",
-            "tier": 11
+            "tier": 1,
+            "stack_size": 100
         },
         {
             "name": "Explosive Rebar",
             "key_name": "explosive-rebar",
-            "tier": 11
+            "tier": 3,
+            "stack_size": 100
         },
         {
             "name": "Rifle Ammo",
             "key_name": "rifle-ammo",
-            "tier": 11
+            "tier": 2,
+            "stack_size": 500
         },
         {
             "name": "Homing Rifle Ammo",
             "key_name": "homing-rifle-ammo",
-            "tier": 11
+            "tier": 5,
+            "stack_size": 500
         },
         {
             "name": "Turbo Rifle Ammo",
             "key_name": "turbo-rifle-ammo",
-            "tier": 11
+            "tier": 7,
+            "stack_size": 500
         },
         {
             "name": "Diamonds",
             "key_name": "diamonds",
-            "tier": 9
+            "tier": 9,
+            "stack_size": 200
         },
         {
             "name": "Time Crystal",
             "key_name": "time-crystal",
-            "tier": 9
+            "tier": 9,
+            "stack_size": 200
         },
         {
             "name": "Ficsite Ingot",
             "key_name": "ficsite-ingot",
-            "tier": 9
+            "tier": 9,
+            "stack_size": 100
         },
         {
             "name": "Ficsite Trigon",
             "key_name": "ficsite-trigon",
-            "tier": 9
+            "tier": 9,
+            "stack_size": 200
         },
         {
             "name": "Dark Matter Crystal",
             "key_name": "dark-matter-crystal",
-            "tier": 9
+            "tier": 9,
+            "stack_size": 200
         },
         {
             "name": "Ficsonium",
             "key_name": "ficsonium",
-            "tier": 9
+            "tier": 9,
+            "stack_size": 100
         },
         {
             "name": "Ficsonium Fuel Rod",
             "key_name": "ficsonium-fuel-rod",
-            "tier": 9
+            "tier": 9,
+            "stack_size": 50
         },
         {
             "name": "Superposition Oscillator",
             "key_name": "superposition-oscillator",
-            "tier": 9
+            "tier": 9,
+            "stack_size": 100
         },
         {
             "name": "Neural-Quantum Processor",
             "key_name": "neural-quantum-processor",
-            "tier": 9
+            "tier": 9,
+            "stack_size": 100
         },
         {
             "name": "Singularity Cell",
             "key_name": "singularity-cell",
-            "tier": 9
+            "tier": 9,
+            "stack_size": 50
         },
         {
             "name": "Ballistic Warp Drive",
             "key_name": "ballistic-warp-drive",
-            "tier": 9
+            "tier": 9,
+            "stack_size": 50
         },
         {
             "name": "AI Expansion Server",
             "key_name": "ai-expansion-server",
-            "tier": 9
+            "tier": 9,
+            "stack_size": 50
         },
         {
             "name": "Alien Power Matrix",
             "key_name": "alien-power-matrix",
-            "tier": 9
+            "tier": 9,
+            "stack_size": 50
         }
     ],
     "fluids": [
@@ -989,7 +1041,7 @@
         {
             "name": "Turbofuel",
             "key_name": "turbofuel",
-            "tier": 6
+            "tier": 5
         },
         {
             "name": "Heavy Oil Residue",
@@ -1029,7 +1081,7 @@
         {
             "name": "Rocket Fuel",
             "key_name": "rocket-fuel",
-            "tier": 8
+            "tier": 7
         },
         {
             "name": "Dark Matter Residue",
