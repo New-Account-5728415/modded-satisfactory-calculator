@@ -749,7 +749,7 @@
         {
             "name": "Packaged Nitric Acid",
             "key_name": "packaged-nitric-acid",
-            "tier": 7
+            "tier": 8
         },
         {
             "name": "Packaged Rocket Fuel",
@@ -1075,7 +1075,7 @@
             "category": "refining",
             "time": 10,
             "ingredients": [
-                ["nitric_acid", 5]
+                ["nitric-acid", 20]
             ],
             "products": [
                 ["quartz-crystal", 5]
