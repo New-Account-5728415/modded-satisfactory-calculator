@@ -4290,6 +4290,20 @@
             ]
         },
         {
+            "name": "Alternate: Liquid Turbo Diamonds",
+            "key_name": "alt-liquid-turbo-diamonds",
+            "category": "accelerating",
+            "time": 3,
+            "power_range": [250, 750],
+            "ingredients": [
+                ["coal", 30],
+                ["turbofuel", 2]
+            ],
+            "products": [
+                ["diamonds", 3]
+            ]
+        },
+        {
             "name": "Alternate: Oil-Based Diamonds",
             "key_name": "alt-diamonds-oil",
             "category": "accelerating",
