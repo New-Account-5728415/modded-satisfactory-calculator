@@ -1119,18 +1119,6 @@
     ],
     "recipes": [
         {
-            "name": "Thermoextracted Sulfur",
-            "key_name": "thermoextracted-sulfur",
-            "category": "refining",
-            "time": 10,
-            "ingredients": [
-                ["sulfuric-acid", 20]
-            ],
-            "products": [
-                ["sulfur", 5]
-            ]
-        },
-        {
             "name": "Iron Ingot",
             "key_name": "iron-ingot",
             "category": "smelting1",
@@ -1144,7 +1132,7 @@
         },
         {
             "name": "Alternate: Iron Alloy Ingot",
-            "key_name": "alt-iron-ingot",
+            "key_name": "alt-iron-alloy",
             "category": "smelting2",
             "time": 12,
             "ingredients": [
@@ -1153,6 +1141,19 @@
             ],
             "products": [
                 ["iron-ingot", 15]
+            ]
+        },
+        {
+            "name": "Alternate: Basic Iron Ingot",
+            "key_name": "alt-basic-iron-ingot",
+            "category": "smelting2",
+            "time": 12,
+            "ingredients": [
+                ["iron-ore", 5],
+                ["limestone", 8]
+            ],
+            "products": [
+                ["iron-ingot", 10]
             ]
         },
         {
@@ -1741,6 +1742,19 @@
             ],
             "products": [
                 ["steel-beam", 1]
+            ]
+        },
+        {
+            "name": "Alternate: Molded Steel Beam",
+            "key_name": "alt-molded-steel-beam",
+            "category": "smelting2",
+            "time": 12,
+            "ingredients": [
+                ["steel-ingot", 24],
+                ["concrete", 16]
+            ],
+            "products": [
+                ["steel-beam", 9]
             ]
         },
         {
@@ -2534,6 +2548,19 @@
             ]
         },
         {
+            "name": "Alternate: Fused Quartz Crystal",
+            "key_name": "alt-fused-quartz-crystal",
+            "category": "smelting2",
+            "time": 20,
+            "ingredients": [
+                ["raw-quartz", 25],
+                ["coal", 12]
+            ],
+            "products": [
+                ["quartz-crystal", 18]
+            ]
+        },
+        {
             "name": "Alternate: Pure Quartz Crystal",
             "key_name": "alt-quartz-crystal",
             "category": "refining",
@@ -2729,20 +2756,6 @@
                 ["rifle-ammo", 25],
                 ["aluminum-casing", 3],
                 ["packaged-turbofuel", 3]
-            ],
-            "products": [
-                ["turbo-rifle-ammo", 50]
-            ]
-        },
-        {
-            "name": "Turbo Rifle Ammo",
-            "key_name": "alt-turbo-rifle-ammo",
-            "category": "blending",
-            "time": 12,
-            "ingredients": [
-                ["rifle-ammo", 25],
-                ["aluminum-casing", 3],
-                ["turbofuel", 3]
             ],
             "products": [
                 ["turbo-rifle-ammo", 50]
