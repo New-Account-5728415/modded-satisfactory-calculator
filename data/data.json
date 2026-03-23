@@ -5182,6 +5182,19 @@
             "products": [
                 ["modular-frame", 1]
             ]
+        },
+        {
+            "name": "Alternate: Tempered Copper Ingot",
+            "key_name": "alt-tempered-copper-ingot",
+            "category": "smelting2",
+            "time": 12,
+            "ingredients": [
+                ["copper-ore", 5],
+                ["petroleum-coke", 8]
+            ],
+            "products": [
+                ["copper-ingot", 12]
+            ]
         }
     ],
     "resources": [
