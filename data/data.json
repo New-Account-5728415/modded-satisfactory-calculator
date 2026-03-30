@@ -5195,6 +5195,19 @@
             "products": [
                 ["copper-ingot", 12]
             ]
+        },
+        {
+            "name": "Alternate: Tempered Caterium Ingot",
+            "key_name": "alt-tempered-caterium-ingot",
+            "category": "smelting2",
+            "time": 8,
+            "ingredients": [
+                ["caterium-ore", 6],
+                ["petroleum-coke", 2]
+            ],
+            "products": [
+                ["caterium-ingot", 3]
+            ]
         }
     ],
     "resources": [
