@@ -1499,6 +1499,20 @@
             ]
         },
         {
+            "name": "Alternate: Aerated Concrete",
+            "key_name": "alt-aerated-concrete",
+            "category": "blending",
+            "time": 4,
+            "ingredients": [
+                ["limestone", 9],
+                ["aluminum-powder", 1],
+                ["water", 3]
+            ],
+            "products": [
+                ["concrete", 8]
+            ]
+        },
+        {
             "name": "Screws",
             "key_name": "screw",
             "category": "crafting1",
@@ -2637,6 +2651,20 @@
             ]
         },
         {
+            "name": "Alternate: Aluminized Smokeless Powder",
+            "key_name": "alt-aluminized-smokeless-powder",
+            "category": "blending",
+            "time": 4,
+            "ingredients": [
+                ["black-powder", 2],
+                ["aluminum-powder", 1],
+                ["heavy-oil-residue", 1]
+            ],
+            "products": [
+                ["smokeless-powder", 3]
+            ]
+        },
+        {
             "name": "Nobelisk",
             "key_name": "nobelisk",
             "category": "crafting2",
@@ -2969,6 +2997,18 @@
             ]
         },
         {
+            "name": "Alternate: Sintered Aluminum Casing",
+            "key_name": "alt-sintered-aluminum-casing",
+            "category": "crafting1",
+            "time": 2,
+            "ingredients": [
+                ["aluminum-powder", 6]
+            ],
+            "products": [
+                ["aluminum-casing", 2]
+            ]
+        },
+        {
             "name": "Heat Sink",
             "key_name": "heat-sink",
             "category": "crafting2",
@@ -2989,6 +3029,19 @@
             "ingredients": [
                 ["aluminum-casing", 3],
                 ["rubber", 3]
+            ],
+            "products": [
+                ["heat-sink", 1]
+            ]
+        },
+        {
+            "name": "Alternate: Sintered Heat Sink",
+            "key_name": "alt-sintered-heat-sink",
+            "category": "crafting2",
+            "time": 8,
+            "ingredients": [
+                ["aluminum-powder", 8],
+                ["copper-sheet", 4]
             ],
             "products": [
                 ["heat-sink", 1]
@@ -3110,6 +3163,20 @@
             ],
             "products": [
                 ["battery", 4]
+            ]
+        },
+        {
+            "name": "Alternate: Aluminum-Air Battery",
+            "key_name": "alt-aluminum-air-battery",
+            "category": "blending",
+            "time": 8,
+            "ingredients": [
+                ["aluminum-powder", 16],
+                ["petroleum-coke", 4],
+                ["water", 4]
+            ],
+            "products": [
+                ["battery", 2]
             ]
         },
         {
