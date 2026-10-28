@@ -5191,7 +5191,7 @@
                 "time": 24,
                 "ingredients": [
                     ["iron-ore", 9],
-                    ["nitrogen-gas", 4.5],
+                    ["nitrogen-gas", 3],
                     ["sulfuric-acid", 0.75]
                 ],
                 "products": [
@@ -5206,7 +5206,7 @@
                 "time": 24,
                 "ingredients": [
                     ["copper-ore", 9],
-                    ["nitrogen-gas", 4.5],
+                    ["nitrogen-gas", 3],
                     ["sulfuric-acid", 0.75]
                 ],
                 "products": [
@@ -5221,7 +5221,7 @@
                 "time": 20,
                 "ingredients": [
                     ["caterium-ore", 9],
-                    ["nitrogen-gas", 4.5],
+                    ["nitrogen-gas", 3],
                     ["sulfuric-acid", 0.75]
                 ],
                 "products": [
@@ -5239,8 +5239,8 @@
                     ["heavy-oil-residue", 5]
                 ],
                 "products": [
-                    ["fuel", 10],
-                    ["sulfur", 10]
+                    ["fuel", 8],
+                    ["sulfur", 8]
                 ]
             },
             {
@@ -5249,7 +5249,7 @@
                 "category": "refining",
                 "time": 12,
                 "ingredients": [
-                    ["silica", 10],
+                    ["silica", 5],
                     ["heavy-oil-residue", 5]
                 ],
                 "products": [
@@ -5261,16 +5261,16 @@
                 "name": "Alternate: Encoded Nuclear Pasta",
                 "key_name": "alt-encoded-nuclear-pasta",
                 "category": "encoding",
-                "time": 60,
+                "time": 120,
                 "ingredients": [
-                    ["excited-photonic-matter", 25],
-                    ["pressure-conversion-cube", 1],
-                    ["copper-powder", 100],
-                    ["dark-matter-crystal", 6]
+                    ["excited-photonic-matter", 50],
+                    ["pressure-conversion-cube", 3],
+                    ["copper-powder", 200],
+                    ["dark-matter-crystal", 12]
                 ],
                 "products": [
-                    ["nuclear-pasta", 1],
-                    ["dark-matter-residue", 25]
+                    ["nuclear-pasta", 2],
+                    ["dark-matter-residue", 50]
                 ]
             },
             {
@@ -5335,8 +5335,8 @@
                 "time": 12,
                 "ingredients": [
                     ["sam-fluctuator", 1],
-                    ["crystal-oscillator", 1],
-                    ["alclad-aluminum-sheet", 9],
+                    ["crystal-oscillator", 4],
+                    ["alclad-aluminum-sheet", 27],
                     ["excited-photonic-matter", 25]
                 ],
                 "products": [
@@ -5351,7 +5351,7 @@
                 "time": 24,
                 "ingredients": [
                     ["ficsonium", 1],
-                    ["ficsite-trigon", 40],
+                    ["ficsite-trigon", 90],
                     ["em-control-rod", 2],
                     ["ionized-fuel", 20]
                 ],
@@ -5364,11 +5364,11 @@
                 "name": "Alternate: Encoded Ionized Fuel",
                 "key_name": "alt-encoded-ionized-fuel",
                 "category": "encoding",
-                "time": 15,
+                "time": 30,
                 "ingredients": [
                     ["rocket-fuel", 50],
                     ["time-crystal", 1],
-                    ["dark-matter-crystal", 5]
+                    ["dark-matter-crystal", 2]
                 ],
                 "products": [
                     ["ionized-fuel", 50],
@@ -5387,7 +5387,7 @@
                     ["em-control-rod", 4]
                 ],
                 "products": [
-                    ["singularity-cell", 32]
+                    ["singularity-cell", 20]
                 ]
             }
         ],
@@ -5458,6 +5458,35 @@
                 ],
                 "products": [
                     ["uranium-fuel-rod", 3]
+                ]
+            },
+            {
+                "name": "Ionized Fuel",
+                "key_name": "ionized-fuel",
+                "category": "refining",
+                "time": 24,
+                "ingredients": [
+                    ["rocket-fuel", 50],
+                    ["power-shard", 1]
+                ],
+                "products": [
+                    ["ionized-fuel", 50],
+                    ["compacted-coal", 2]
+                ]
+            },
+            {
+                "name": "Alternate: Turbo Blend Fuel",
+                "key_name": "alt-turbo-blend-fuel",
+                "category": "blending",
+                "time": 8,
+                "ingredients": [
+                    ["fuel", 2],
+                    ["heavy-oil-residue", 2],
+                    ["sulfur", 5],
+                    ["petroleum-coke", 4]
+                ],
+                "products": [
+                    ["turbofuel", 6]
                 ]
             }
         ]
