@@ -12,6 +12,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.*/
 import { spec } from "./factory.js"
+import { Rational } from "./rational.js"
 import { formatSettings } from "./fragment.js"
 import { setTitle } from "./settings.js"
 
@@ -24,6 +25,21 @@ export function plusHandler() {
 
 export function supplyPlusHandler() {
     spec.addSupply()
+    spec.updateSolution()
+}
+
+// somersloop budget
+
+export function changeSloopBudget(event) {
+    let value = event.target.value.trim()
+    if (value === "" || !(Number(value) > 0)) {
+        spec.sloopBudget = null
+        event.target.value = ""
+    } else {
+        let n = Math.floor(Number(value))
+        spec.sloopBudget = Rational.from_float(n)
+        event.target.value = n
+    }
     spec.updateSolution()
 }
 

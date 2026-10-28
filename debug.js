@@ -36,6 +36,21 @@ function renderMatrix(d, A, m) {
         th.append(() => recipe.icon.make(32))
             .classed("item-icon", true)
     }
+    for (let sr of m.sloopRows || []) {
+        let th = header.append("th")
+        th.append(() => new Text("slots "))
+        th.append(() => sr.icon.make(32))
+            .classed("item-icon", true)
+    }
+    if (m.budgetCols) {
+        header.append("th").text("sloop budget")
+    }
+    for (let i = 0; i < (m.limitCols || 0); i++) {
+        let th = header.append("th")
+        th.append(() => new Text("limit "))
+        th.append(() => m.sloopRows[i].icon.make(32))
+            .classed("item-icon", true)
+    }
     header.append("th")
         .text("tax")
     for (let recipe of m.recipes) {

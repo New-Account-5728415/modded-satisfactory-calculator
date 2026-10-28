@@ -162,6 +162,7 @@ class DisplayGroup {
             let building = null
             let overclock = null
             let sloop = null
+            let autoSloop = null
             if (recipe !== null) {
                 building = spec.getBuilding(recipe)
                 overclock = spec.getOverclock(recipe).mul(hundred).toString()
@@ -171,6 +172,7 @@ class DisplayGroup {
                         sloop = zero
                     }
                 }
+                autoSloop = spec.getAutoSloops(recipe)
             }
             let single = item !== null && recipe !== null && item.name === recipe.name
             let breakdown = null
@@ -183,6 +185,7 @@ class DisplayGroup {
                 building,
                 overclock,
                 sloop,
+                autoSloop,
                 single,
                 breakdown,
             })
@@ -417,12 +420,19 @@ export function displayItems(spec, totals) {
         .attr("value", d => d.overclock)
     let hundred = Rational.from_float(100)
     let sloopRow = buildingRow.filter(d => d.sloop !== null)
+    // Somersloops set by hand show as "per building/slots"; ones the solver
+    // placed show their total, and the meter shows how full the slots are.
     sloopRow.selectAll(".meter")
         .style("height", d => {
-            return one.sub(d.sloop.div(d.building.maxSomersloop)).mul(hundred).floor().toString() + "%"
+            let filled = d.autoSloop !== null && d.sloop.isZero() ? spec.getSomersloop(d.recipe) : d.sloop.div(d.building.maxSomersloop)
+            return one.sub(filled).mul(hundred).floor().toString() + "%"
         })
     sloopRow.selectAll(".count")
-        .text(d => `${d.sloop.toString()}/${d.building.maxSomersloop.toString()}`)
+        .text(d => d.autoSloop !== null && d.sloop.isZero() ? `${d.autoSloop.toString()} auto` : `${d.sloop.toString()}/${d.building.maxSomersloop.toString()}`)
+    sloopRow.selectAll(".sloopclick")
+        .attr("title", d => d.autoSloop !== null && d.sloop.isZero()
+            ? `${d.autoSloop.toString()} somersloops placed by the planner across these buildings. Click to set them by hand instead.`
+            : "Somersloops per building. Click to change.")
     let totalAveragePower = zero
     let totalPeakPower = zero
     buildingRow.selectAll("tt.power")
@@ -512,11 +522,24 @@ export function displayItems(spec, totals) {
             .text(d => d.percent)
 
     let totalPower = [totalAveragePower, totalPeakPower]
-    let footerRow = table.selectAll("tfoot tr")
+    let footerRow = table.selectAll("tfoot tr.power-row")
     footerRow.select("td.power-label")
         .attr("colspan", totalCols - 3)
     footerRow.select("tt")
         .data(totalPower)
         .text(d => spec.format.alignCount(d) + " MW")
+    let {placed, manual} = spec.sloopsUsed(totals)
+    let sloopFooter = table.select("tfoot tr.sloop-row")
+        .style("display", spec.sloopBudget === null && manual.isZero() ? "none" : null)
+    sloopFooter.select("td.power-label")
+        .attr("colspan", totalCols - 3)
+    let parts = []
+    if (spec.sloopBudget !== null) {
+        parts.push(`${placed.toString()} of ${spec.sloopBudget.toString()} placed`)
+    }
+    if (!manual.isZero()) {
+        parts.push(`${manual.toString()} set by hand`)
+    }
+    sloopFooter.select("tt").text(parts.join(", "))
     table.select("tfoot").raise()
 }

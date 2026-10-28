@@ -89,6 +89,19 @@ function renderSupplies(settings) {
     }
 }
 
+// somersloop budget
+
+function renderSloopBudget(settings) {
+    spec.sloopBudget = null
+    if (settings.has("sloops")) {
+        let n = Math.floor(Number(settings.get("sloops")))
+        if (n > 0) {
+            spec.sloopBudget = Rational.from_float(n)
+        }
+    }
+    d3.select("#sloop_budget").property("value", spec.sloopBudget === null ? "" : spec.sloopBudget.toString())
+}
+
 // clock speed precision
 
 function renderClockPrecision(settings) {
@@ -510,6 +523,7 @@ export function renderSettings(settings) {
     renderTargets(settings)
     renderSupplies(settings)
     renderClockPrecision(settings)
+    renderSloopBudget(settings)
     renderDebugCheckbox(settings)
     renderTab(settings)
 }

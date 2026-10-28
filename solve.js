@@ -14,7 +14,7 @@ limitations under the License.*/
 
 import { getCycleRecipes } from "./cycle.js"
 import { Matrix } from "./matrix.js"
-import { Rational, minusOne, zero, one } from "./rational.js"
+import { Rational, minusOne, zero, one, half } from "./rational.js"
 import { Ingredient } from "./recipe.js"
 import { simplex } from "./simplex.js"
 import { Totals } from "./totals.js"
@@ -71,6 +71,14 @@ class Result {
 
 function traverse(spec, cyclic, item, rate, forceRecipe) {
     let result = new Result()
+    // With somersloops to place, every recipe goes through the solver.
+    if (spec.sloopBudget !== null) {
+        result.remainder(item, rate)
+        if (forceRecipe !== undefined && forceRecipe !== null) {
+            result.unfinishedTarget(item, rate, forceRecipe)
+        }
+        return result
+    }
     let recipe = forceRecipe
     if (recipe === undefined || recipe === null) {
         let itemRecipes = spec.getRecipes(item)
@@ -109,46 +117,60 @@ function recursiveSolve(spec, cyclic, outputs) {
     return result
 }
 
-/* Tableau layout:
+
+// Somersloops the solver may place (spec.sloopBudget). For a recipe made in
+// a building with somersloop slots, one somersloop adds 1/slots of a
+// building's output (of each product, net of what the recipe itself uses),
+// with no extra inputs. This row stands for that extra output; its rate is
+// the number of somersloops.
+class SloopRecipe {
+    constructor(recipe, perSloop) {
+        this.recipe = recipe
+        this.name = "Somersloops: " + recipe.name
+        this.ingredients = []
+        this.products = perSloop
+        this.icon = recipe.icon
+        this.isSloop = true
+    }
+    isReal() {
+        return false
+    }
+}
+
+// Whether the solver may put somersloops on this recipe.
+function sloopable(spec, recipe) {
+    if (spec.sloopBudget === null || !recipe.isReal() || recipe.isSupply || recipe.isResource() || recipe.isDisable()) {
+        return false
+    }
+    let building = spec.getBuilding(recipe)
+    if (building === null || building.maxSomersloop === null || building.maxSomersloop === undefined || building.maxSomersloop.isZero()) {
+        return false
+    }
+    // Recipes given somersloops by hand keep exactly those.
+    return !spec.somersloop.has(recipe)
+}
+
+/* Builds and solves the tableau.
 
 Columns:
-[surplus items] [pseudo] [supply caps] [tax] [recipes] [result] [cost]
+[surplus items] [pseudo] [supply caps] [sloop caps] [sloop budget] [sloop limits] [tax] [recipes] [result] [cost]
+
+Rows:
+[recipes, then one SloopRecipe per recipe that can take somersloops]
+[tax]
+[result]
 
 Each supplied item (an input from an existing production line) has a
 SupplyRecipe with no cost, and a cap column limiting its rate to what was
-entered.
+entered. Each SloopRecipe has a cap column (no more somersloops than the
+recipe's buildings have slots), all of them share the budget column, and on
+the second pass each also gets a limit column (a whole number).
 
-Rows:
-[recipes]
-[tax]
-[result]
+Returns {rates, sloops, surplus}: real recipe rates, somersloops per recipe,
+and leftover items.
 */
-
-export function solve(spec, fullOutputs) {
-    let outputs = new Map()
-    for (let {item, rate, recipe} of fullOutputs) {
-        rate = rate.add(outputs.get(item) || zero)
-        outputs.set(item, rate)
-    }
-    let recipes = spec.getRecipeGraph(outputs)
-    let cyclic = getCycleRecipes(recipes)
-    let partialSolution = recursiveSolve(spec, cyclic, fullOutputs)
-    let solution = partialSolution.recipeRates
-    spec.lastPartial = partialSolution
-
-    if (partialSolution.remaining.size === 0) {
-        spec.lastTableau = null
-        spec.lastMetadata = null
-        spec.lastSolution = null
-        solution.set(new OutputRecipe(outputs), one)
-        return new Totals(spec, outputs, solution, new Map())
-    }
-
-    recipes = spec.getRecipeGraph(partialSolution.remaining)
-
+function runLP(spec, recipes, partialSolution, sloopLimits, sloopBudget, excluded) {
     let products = new Set()
-    //let ingredients = new Set()
-
     let items = []
     let itemColumns = new Map()
     let recipeArray = []
@@ -165,48 +187,64 @@ export function solve(spec, fullOutputs) {
             products.add(ing.item)
         }
     }
-
-    // If a build target requests a number of buildings for a recipe that is
-    // involved in a cycle, or which has multiple products, then we need to
-    // include that target in the tableau, with pseudo-items that stand in for
-    // the requested building count. We don't need any fancy math: The
-    // production amount for the corresponding real item can simply be copied.
-    /*for (let i = 0; i < partialSolution.targets.length; i++) {
-        let t = partialSolution.targets[i]
-        t.column = items.length + i
-    }*/
-
-    /*for (let recipe of recipes) {
-        for (let ing of recipe.ingredients) {
-            if (!products.has(ing.item) && !ingredients.has(ing.item)) {
-                itemColumns.set(ing.item, items.length)
-                items.push(ing.item)
-                //disabledItems.push(ing.item)
+    // Somersloop rows go after the real recipes.
+    let sloopRows = []
+    if (sloopBudget !== null && zero.less(sloopBudget)) {
+        for (let recipe of recipes) {
+            if (!sloopable(spec, recipe) || (excluded && excluded.has(recipe))) {
+                continue
             }
-            ingredients.add(ing.item)
+            if (sloopLimits !== null && !zero.less(sloopLimits.get(recipe) || zero)) {
+                continue
+            }
+            let slots = spec.getBuilding(recipe).maxSomersloop
+            let perBuilding = spec.getRecipeRate(recipe)  // crafts per second
+            let perSloop = []
+            for (let ing of recipe.products) {
+                let net = ing.amount.sub(recipe.uses(ing.item))
+                if (zero.less(net)) {
+                    perSloop.push(new Ingredient(ing.item, net.mul(perBuilding).div(slots)))
+                }
+            }
+            if (perSloop.length === 0) {
+                continue
+            }
+            let sr = new SloopRecipe(recipe, perSloop)
+            recipeRows.set(sr, recipeArray.length)
+            recipeArray.push(sr)
+            sloopRows.push(sr)
         }
-    }*/
+    }
 
     let supplyRecipes = recipeArray.filter(r => r.isSupply)
     let capStart = items.length + partialSolution.targets.length
-    let columns = items.length + partialSolution.targets.length + supplyRecipes.length + recipeArray.length + /*disabledItems.length +*/ 3
-    let rows = recipeArray.length + /*disabledItems.length +*/ 2
+    let sloopCapStart = capStart + supplyRecipes.length
+    let budgetCol = sloopCapStart + sloopRows.length
+    let budgetCols = sloopRows.length > 0 ? 1 : 0
+    let limitStart = budgetCol + budgetCols
+    let limitCols = sloopLimits === null ? 0 : sloopRows.length
+    let tax = limitStart + limitCols
+    let columns = tax + recipeArray.length + 3
+    let rows = recipeArray.length + 2
     let A = new Matrix(rows, columns)
-
-    let tax = capStart + supplyRecipes.length
 
     // Set recipe inputs/outputs
     for (let i = 0; i < recipeArray.length; i++) {
         let recipe = recipeArray[i]
         for (let ing of recipe.products) {
             let j = itemColumns.get(ing.item)
-            A.setIndex(i, j, ing.amount)
+            A.addIndex(i, j, ing.amount)
         }
         for (let ing of recipe.ingredients) {
             let j = itemColumns.get(ing.item)
             A.addIndex(i, j, zero.sub(ing.amount))
         }
-        // Apply prod bonus
+        if (recipe.isSloop) {
+            // Somersloops are free: no cost and no tax.
+            A.setIndex(i, tax + i + 1, one)
+            continue
+        }
+        // Apply prod bonus (somersloops set by hand)
         let prodBonus = one.add(spec.getSomersloop(recipe))
         if (one.less(prodBonus)) {
             for (let ing of recipe.products) {
@@ -230,17 +268,28 @@ export function solve(spec, fullOutputs) {
         A.setIndex(row, col, product)
         A.setIndex(rows - 1, col, zero.sub(rate))
     }
-    /*for (let i = 0; i < disabledItems.length; i++) {
-        let row = recipeArray.length + i
-        A.setIndex(row, itemColumns.get(item), one)
-        A.setIndex(row, tax, minusOne)
-        A.setIndex(row, products.size + row, one)
-    }*/
     // Supply caps: rate of the supply recipe <= the supplied rate.
     for (let k = 0; k < supplyRecipes.length; k++) {
         let recipe = supplyRecipes[k]
         A.setIndex(recipeRows.get(recipe), capStart + k, minusOne)
         A.setIndex(rows - 1, capStart + k, spec.supply.get(recipe.products[0].item))
+    }
+    // Somersloop caps: sloops <= slots * buildings, where buildings =
+    // recipe-rate / (crafts per second of one building). Then the budget, and
+    // on the second pass the whole-number limits.
+    for (let k = 0; k < sloopRows.length; k++) {
+        let sr = sloopRows[k]
+        let slots = spec.getBuilding(sr.recipe).maxSomersloop
+        A.setIndex(recipeRows.get(sr.recipe), sloopCapStart + k, slots.div(spec.getRecipeRate(sr.recipe)))
+        A.setIndex(recipeRows.get(sr), sloopCapStart + k, minusOne)
+        A.setIndex(recipeRows.get(sr), budgetCol, minusOne)
+        if (limitCols > 0) {
+            A.setIndex(recipeRows.get(sr), limitStart + k, minusOne)
+            A.setIndex(rows - 1, limitStart + k, sloopLimits.get(sr.recipe))
+        }
+    }
+    if (budgetCols > 0) {
+        A.setIndex(rows - 1, budgetCol, sloopBudget)
     }
     A.setIndex(rows - 2, tax, one)
     A.setIndex(rows - 1, columns - 2, one)
@@ -300,7 +349,9 @@ export function solve(spec, fullOutputs) {
         "recipes": recipeArray,
         "targets": partialSolution.targets,
         "supplyRecipes": supplyRecipes,
-        //"disabledItems": disabledItems,
+        "sloopRows": sloopRows,
+        "budgetCols": budgetCols,
+        "limitCols": limitCols,
     }
 
     // Solve.
@@ -308,25 +359,154 @@ export function solve(spec, fullOutputs) {
 
     spec.lastSolution = A
 
-    // Convert result to map of recipe to recipe-rate.
-    //let solution = new Map()
+    let rates = new Map()
+    let sloops = new Map()
     for (let i = 0; i < recipeArray.length; i++) {
-        let col = tax + i + 1
-        let rate = A.index(A.rows - 1, col)
-        if (zero.less(rate)) {
-            let recipe = recipeArray[i]
-            solution.set(recipe, (solution.get(recipe) || zero).add(rate))
+        let rate = A.index(A.rows - 1, tax + i + 1)
+        if (!zero.less(rate)) {
+            continue
+        }
+        let recipe = recipeArray[i]
+        if (recipe.isSloop) {
+            sloops.set(recipe.recipe, rate)
+        } else {
+            rates.set(recipe, rate)
         }
     }
-    solution.set(new OutputRecipe(outputs), one)
-    // And to map of surplus item to rate.
     let surplus = new Map()
-    for (let i = 0; i < items.length /*- disabledItems.length*/; i++) {
+    for (let i = 0; i < items.length; i++) {
         let rate = A.index(A.rows - 1, i)
         if (zero.less(rate)) {
             surplus.set(items[i], rate)
         }
     }
+    return {rates, sloops, surplus}
+}
+
+function sloopSlots(spec, recipe) {
+    return spec.getBuilding(recipe).maxSomersloop
+}
+
+// Buildings (fractional) a recipe runs in at the given rates.
+function buildingsFor(spec, recipe, rates) {
+    let rate = rates.get(recipe) || zero
+    return rate.div(spec.getRecipeRate(recipe))
+}
+
+// Whole somersloops needed for the given slot-units: one each in full-speed
+// buildings, and for any remainder in the part-speed building, enough that
+// (count x that building's speed) covers it.
+function physicalSloops(spec, recipe, units, buildings) {
+    let slots = sloopSlots(spec, recipe)
+    let fullSlots = slots.mul(buildings.floor())
+    if (!fullSlots.less(units)) {
+        return units.ceil()
+    }
+    let speed = buildings.sub(buildings.floor())
+    let extra = units.sub(fullSlots).div(speed).ceil()
+    if (slots.less(extra)) {
+        extra = slots
+    }
+    return fullSlots.add(extra)
+}
+
+export function solve(spec, fullOutputs) {
+    spec.autoSloops = new Map()
+    let outputs = new Map()
+    for (let {item, rate, recipe} of fullOutputs) {
+        rate = rate.add(outputs.get(item) || zero)
+        outputs.set(item, rate)
+    }
+    let recipes = spec.getRecipeGraph(outputs)
+    let cyclic = getCycleRecipes(recipes)
+    let partialSolution = recursiveSolve(spec, cyclic, fullOutputs)
+    let solution = partialSolution.recipeRates
+    spec.lastPartial = partialSolution
+
+    if (partialSolution.remaining.size === 0) {
+        spec.lastTableau = null
+        spec.lastMetadata = null
+        spec.lastSolution = null
+        solution.set(new OutputRecipe(outputs), one)
+        return new Totals(spec, outputs, solution, new Map())
+    }
+
+    recipes = spec.getRecipeGraph(partialSolution.remaining)
+
+    // Somersloops. The solver works in "slot-units": one unit is one slot
+    // of a building running at full speed. Whole somersloops go into
+    // full-speed buildings one-for-one; any that must go into the last,
+    // part-speed building count for less, so more are needed there. The
+    // budget is re-solved smaller until the real count fits.
+    // Somersloops that would mostly sit idle (in a building running at
+    // under half speed) are taken back out, so they stay available.
+    let budget = spec.sloopBudget
+    let excluded = new Set()
+    let pass = null
+    let physical = new Map()
+    let fits = spec.sloopBudget === null
+    for (let attempt = 0; attempt < 12 && !fits; attempt++) {
+        pass = runLP(spec, recipes, partialSolution, null, budget, excluded)
+        // Whole somersloops in full-speed buildings: round those down.
+        let limits = new Map()
+        let rounded = false
+        for (let [recipe, units] of pass.sloops) {
+            let fullSlots = sloopSlots(spec, recipe).mul(buildingsFor(spec, recipe, pass.rates).floor())
+            if (!units.isInteger() && !fullSlots.less(units)) {
+                limits.set(recipe, units.floor())
+                rounded = true
+            } else {
+                limits.set(recipe, units)
+            }
+        }
+        if (rounded) {
+            pass = runLP(spec, recipes, partialSolution, limits, budget, excluded)
+        }
+        physical = new Map()
+        let total = zero
+        let dropped = false
+        for (let [recipe, units] of pass.sloops) {
+            let n = physicalSloops(spec, recipe, units, buildingsFor(spec, recipe, pass.rates))
+            if (!zero.less(n)) {
+                continue
+            }
+            if (units.div(n).less(half)) {
+                excluded.add(recipe)
+                dropped = true
+                continue
+            }
+            physical.set(recipe, {units, n})
+            total = total.add(n)
+        }
+        if (dropped) {
+            continue
+        }
+        if (!spec.sloopBudget.less(total)) {
+            fits = true
+            break
+        }
+        // Over budget: try again with the budget scaled down to fit.
+        budget = budget.mul(spec.sloopBudget).div(total).floor()
+        if (!zero.less(budget)) {
+            break
+        }
+    }
+    if (!fits || pass === null) {
+        // No somersloops to place, or none that fit: solve without them.
+        physical = new Map()
+        pass = runLP(spec, recipes, partialSolution, null, null, excluded)
+    }
+    for (let [recipe, rate] of pass.rates) {
+        solution.set(recipe, (solution.get(recipe) || zero).add(rate))
+    }
+    // Record where the solver put somersloops: the real count, and the
+    // fraction of the recipe's slots they amount to (used by recipe.gives()).
+    for (let [recipe, {units, n}] of physical) {
+        let buildings = buildingsFor(spec, recipe, pass.rates)
+        spec.autoSloops.set(recipe, {count: n, fraction: units.div(sloopSlots(spec, recipe).mul(buildings))})
+    }
+    solution.set(new OutputRecipe(outputs), one)
+    let surplus = pass.surplus
     if (surplus.size > 0) {
         solution.set(new SurplusRecipe(surplus), one)
     }

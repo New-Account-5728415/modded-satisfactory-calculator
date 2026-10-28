@@ -44,6 +44,9 @@ export function formatSettings(overrideTab, targets) {
     if (spec.format.displayFormat !== DEFAULT_FORMAT) {
         settings += "vf=" + spec.format.displayFormat[0] + "&"
     }
+    if (spec.sloopBudget !== null) {
+        settings += "sloops=" + spec.sloopBudget.toString() + "&"
+    }
     if (spec.clockDecimals !== null) {
         settings += "clk=" + spec.clockDecimals + "&"
     }

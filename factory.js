@@ -63,6 +63,10 @@ class FactorySpecification {
 
         // Map recipe to somersloop count
         this.somersloop = new Map()
+        // Somersloops the solver may place itself (null: none), and where it
+        // put them in the last solution: recipe -> {count, fraction}.
+        this.sloopBudget = null
+        this.autoSloops = new Map()
 
         // Inputs supplied from existing production lines: list of
         // SupplyInput, and the map of item to rate built from them.
@@ -410,9 +414,31 @@ class FactorySpecification {
         }
         let sloops = this.somersloop.get(recipe)
         if (sloops === undefined) {
-            return zero
+            let auto = this.autoSloops.get(recipe)
+            return auto === undefined ? zero : auto.fraction
         }
         return sloops.div(building.maxSomersloop)
+    }
+    // Somersloops the solver placed on this recipe (a Rational count), or null.
+    getAutoSloops(recipe) {
+        let auto = this.autoSloops.get(recipe)
+        return auto === undefined ? null : auto.count
+    }
+    // Somersloops in use: {placed} by the solver and {manual}, set by hand
+    // (per building, times the buildings).
+    sloopsUsed(totals) {
+        let placed = zero
+        for (let [recipe, auto] of this.autoSloops) {
+            placed = placed.add(auto.count)
+        }
+        let manual = zero
+        for (let [recipe, count] of this.somersloop) {
+            let rate = totals.rates.get(recipe)
+            if (rate !== undefined) {
+                manual = manual.add(count.mul(this.getCount(recipe, rate).ceil()))
+            }
+        }
+        return {placed, manual}
     }
     setSomersloop(recipe, count) {
         if (count.equal(zero)) {
@@ -495,12 +521,39 @@ class FactorySpecification {
         let sloop = one.add(this.getSomersloop(recipe))
         sloop = sloop.mul(sloop)
         let machines = this.getMachines(recipe, rate)
-        if (machines !== null) {
-            // Whole buildings, each drawing power for its own clock speed.
-            let clock = machines.clock.div(Rational.from_float(100))
-            let factor = Rational.from_float(Math.pow(clock.toFloat(), OVERCLOCK_POWER_EXPONENT))
-            let power = building.power.mul(machines.count).mul(sloop).mul(factor)
-            return {average: power, peak: power}
+        let auto = this.getAutoSloops(recipe)
+        if (auto !== null) {
+            // Placed somersloops: whole buildings run at full speed and get
+            // them first (a full one draws (1 + 1)^2 = 4x power); any left go
+            // in the last, part-speed building.
+            let slots = building.maxSomersloop
+            let n = machines !== null ? machines.count : count
+            let fullBuildings = count.floor()
+            let speed = count.sub(fullBuildings)
+            let inFull = auto.less(slots.mul(fullBuildings)) ? auto : slots.mul(fullBuildings)
+            let inPart = auto.sub(inFull)
+            let full = inFull.div(slots).floor()
+            let rem = inFull.sub(full.mul(slots))
+            let sq = x => x.mul(x)
+            // building-equivalents of power
+            let units = Rational.from_float(4).mul(full)
+            let used = full
+            if (!rem.isZero()) {
+                units = units.add(sq(one.add(rem.div(slots))))
+                used = used.add(one)
+            }
+            if (used.less(fullBuildings)) {
+                units = units.add(fullBuildings.sub(used))
+            }
+            units = units.add(speed.mul(sq(one.add(inPart.div(slots)))))
+            let factor = one
+            let overclock = this.overclock.get(recipe)
+            if (overclock !== undefined) {
+                factor = Rational.from_float(Math.pow(overclock.toFloat(), OVERCLOCK_POWER_EXPONENT))
+            }
+            let average = building.power.mul(units).mul(factor)
+            let peakUnits = units.sub(speed.mul(sq(one.add(inPart.div(slots))))).add(speed.isZero() ? zero : sq(one.add(inPart.div(slots))))
+            return {average, peak: building.power.mul(peakUnits).mul(factor)}
         }
         let average = building.power.mul(count).mul(sloop)
         let peak = building.power.mul(count.ceil()).mul(sloop)

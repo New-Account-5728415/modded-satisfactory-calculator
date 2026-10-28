@@ -24,11 +24,12 @@
         var handlers = {}
     </script>
     <script type="module">
-        import { plusHandler, supplyPlusHandler, changeClockPrecision, clickTab, changeTitle, changeRatePrecision, changeCountPrecision, changeFormat, changeVisType, changeVisRender, toggleDebug } from "./events.js"
+        import { plusHandler, supplyPlusHandler, changeClockPrecision, changeSloopBudget, clickTab, changeTitle, changeRatePrecision, changeCountPrecision, changeFormat, changeVisType, changeVisRender, toggleDebug } from "./events.js"
         import { init } from "./init.js"
         handlers.plusHandler = plusHandler
         handlers.supplyPlusHandler = supplyPlusHandler
         handlers.changeClockPrecision = changeClockPrecision
+        handlers.changeSloopBudget = changeSloopBudget
         handlers.clickTab = clickTab
         handlers.changeTitle = changeTitle
         handlers.changeRatePrecision = changeRatePrecision
@@ -118,14 +119,19 @@ limitations under the License.-->
         <thead><tr></tr></thead>
         <tbody></tbody>
         <tfoot>
-            <tr>
+            <tr class="power-row">
                 <td class="surplus"></td>
                 <td class="right-align power-label"><b>total average power: </b></td>
                 <td class="right-align pad"><tt></tt></td>
             </tr>
-            <tr>
+            <tr class="power-row">
                 <td class="surplus"></td>
                 <td class="right-align power-label"><b>total peak power: </b></td>
+                <td class="right-align pad"><tt></tt></td>
+            </tr>
+            <tr class="sloop-row">
+                <td class="surplus"></td>
+                <td class="right-align power-label"><b>somersloops used: </b></td>
                 <td class="right-align pad"><tt></tt></td>
             </tr>
         </tfoot>
@@ -162,6 +168,12 @@ limitations under the License.-->
             <td class="setting-label top">Clock speed precision:</td>
             <td><input id="clockprec" class="prec" type="number" min="0" max="4" placeholder="off" onchange="handlers.changeClockPrecision(event)"> decimal places
             <div class="setting-note">Leave empty to show fractional building counts. Set it to show whole buildings and the clock speed to give them all, as you'd type it in game: 4 decimal places on PC, 2 with a controller slider. Clock speeds are rounded up (and are at least 1%), so a plan never falls short, and power is worked out for those clock speeds.</div></td>
+            </tr>
+
+            <tr class="setting-row">
+            <td class="setting-label top">Somersloops available:</td>
+            <td><input id="sloop_budget" class="prec" type="number" min="0" step="1" placeholder="none" onchange="handlers.changeSloopBudget(event)">
+            <div class="setting-note">Enter how many Somersloops you have, and the planner places them itself, where they save the most raw resources (which also saves the buildings that would have made them). A Somersloop slot doubles that slot's share of a building's output with no extra input, and a full building draws 4&times; the power; Constructors and Smelters have 1 slot; Assemblers, Foundries, Refineries and Converters 2; Manufacturers, Blenders, Particle Accelerators and Quantum Encoders 4. Placed Somersloops show as "auto" on the Items tab. Recipes you give Somersloops by hand there keep them, on top of this number. Somersloops that would sit in a building running under half speed are left out, so you keep them.</div></td>
             </tr>
 
             <tr class="setting-row">
