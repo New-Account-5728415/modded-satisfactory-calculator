@@ -112,7 +112,11 @@ function recursiveSolve(spec, cyclic, outputs) {
 /* Tableau layout:
 
 Columns:
-[surplus items] [pseudo] [tax] [recipes] [result] [cost]
+[surplus items] [pseudo] [supply caps] [tax] [recipes] [result] [cost]
+
+Each supplied item (an input from an existing production line) has a
+SupplyRecipe with no cost, and a cap column limiting its rate to what was
+entered.
 
 Rows:
 [recipes]
@@ -183,11 +187,13 @@ export function solve(spec, fullOutputs) {
         }
     }*/
 
-    let columns = items.length + partialSolution.targets.length + recipeArray.length + /*disabledItems.length +*/ 3
+    let supplyRecipes = recipeArray.filter(r => r.isSupply)
+    let capStart = items.length + partialSolution.targets.length
+    let columns = items.length + partialSolution.targets.length + supplyRecipes.length + recipeArray.length + /*disabledItems.length +*/ 3
     let rows = recipeArray.length + /*disabledItems.length +*/ 2
     let A = new Matrix(rows, columns)
 
-    let tax = items.length + partialSolution.targets.length
+    let tax = capStart + supplyRecipes.length
 
     // Set recipe inputs/outputs
     for (let i = 0; i < recipeArray.length; i++) {
@@ -230,6 +236,12 @@ export function solve(spec, fullOutputs) {
         A.setIndex(row, tax, minusOne)
         A.setIndex(row, products.size + row, one)
     }*/
+    // Supply caps: rate of the supply recipe <= the supplied rate.
+    for (let k = 0; k < supplyRecipes.length; k++) {
+        let recipe = supplyRecipes[k]
+        A.setIndex(recipeRows.get(recipe), capStart + k, minusOne)
+        A.setIndex(rows - 1, capStart + k, spec.supply.get(recipe.products[0].item))
+    }
     A.setIndex(rows - 2, tax, one)
     A.setIndex(rows - 1, columns - 2, one)
 
@@ -287,6 +299,7 @@ export function solve(spec, fullOutputs) {
         "items": items,
         "recipes": recipeArray,
         "targets": partialSolution.targets,
+        "supplyRecipes": supplyRecipes,
         //"disabledItems": disabledItems,
     }
 

@@ -16,9 +16,8 @@ import { colorSchemes } from "./color.js"
 import { dropdown } from "./dropdown.js"
 import { DEFAULT_TAB, clickTab, DEFAULT_VISUALIZER, visualizerType, setVisualizerType, DEFAULT_RENDER, visualizerRender, setVisualizerRender } from "./events.js"
 import { spec, resourcePurities, DEFAULT_BELT, DEFAULT_PIPE } from "./factory.js"
-import { getRecipeGroups } from "./groups.js"
 import { Rational } from "./rational.js"
-import { renderRecipe } from "./recipe.js"
+import { renderRecipeTab } from "./recipe_tab.js"
 
 // There are several things going on with this control flow. Settings should
 // work like this:
@@ -70,6 +69,37 @@ function renderTargets(settings) {
     } else {
         spec.addTarget()
     }
+}
+
+// supplied inputs
+
+function renderSupplies(settings) {
+    for (let input of spec.supplyInputs.slice()) {
+        spec.removeSupply(input)
+    }
+    let supplySetting = settings.get("supply")
+    if (supplySetting !== undefined && supplySetting !== "") {
+        for (let s of supplySetting.split(",")) {
+            let [itemKey, rate] = s.split(":")
+            if (!spec.items.has(itemKey)) {
+                continue
+            }
+            spec.addSupply(itemKey).setRate(rate)
+        }
+    }
+}
+
+// clock speed precision
+
+function renderClockPrecision(settings) {
+    spec.clockDecimals = null
+    if (settings.has("clk")) {
+        let n = Number(settings.get("clk"))
+        if (Number.isFinite(n)) {
+            spec.clockDecimals = Math.max(0, Math.min(4, Math.round(n)))
+        }
+    }
+    d3.select("#clockprec").property("value", spec.clockDecimals === null ? "" : spec.clockDecimals)
 }
 
 // ignore
@@ -340,37 +370,7 @@ function renderRecipes(settings) {
         spec.setDefaultDisable()
     }
 
-    let allGroups = getRecipeGroups(new Set(spec.recipes.values()))
-    let groups = []
-    for (let group of allGroups) {
-        if (group.size > 1) {
-            groups.push(Array.from(group))
-        }
-    }
-
-    let div = d3.select("#recipe_toggles")
-    div.selectAll("*").remove()
-    let recipe = div.selectAll("div")
-        .data(groups)
-        .join("div")
-            .classed("toggle-row", true)
-            .selectAll("div")
-            .data(d => d)
-            .join("div")
-                .classed("toggle recipe", true)
-                .classed("selected", d => !spec.disable.has(d))
-                .attr("title", d => d.name)
-                .on("click", function(event, d) {
-                    let disabled = spec.disable.has(d)
-                    d3.select(this).classed("selected", disabled)
-                    if (disabled) {
-                        spec.setEnable(d)
-                    } else {
-                        spec.setDisable(d)
-                    }
-                    spec.updateSolution()
-                })
-    renderRecipe(recipe)
+    renderRecipeTab()
 }
 
 // miners
@@ -508,6 +508,8 @@ export function renderSettings(settings) {
     renderResourcePriorities(settings)
     renderRecipes(settings)
     renderTargets(settings)
+    renderSupplies(settings)
+    renderClockPrecision(settings)
     renderDebugCheckbox(settings)
     renderTab(settings)
 }

@@ -24,9 +24,11 @@
         var handlers = {}
     </script>
     <script type="module">
-        import { plusHandler, clickTab, changeTitle, changeRatePrecision, changeCountPrecision, changeFormat, changeVisType, changeVisRender, toggleDebug } from "./events.js"
+        import { plusHandler, supplyPlusHandler, changeClockPrecision, clickTab, changeTitle, changeRatePrecision, changeCountPrecision, changeFormat, changeVisType, changeVisRender, toggleDebug } from "./events.js"
         import { init } from "./init.js"
         handlers.plusHandler = plusHandler
+        handlers.supplyPlusHandler = supplyPlusHandler
+        handlers.changeClockPrecision = changeClockPrecision
         handlers.clickTab = clickTab
         handlers.changeTitle = changeTitle
         handlers.changeRatePrecision = changeRatePrecision
@@ -58,6 +60,12 @@ limitations under the License.-->
         <li id="plusButton">
             <button class="targetButton ui" title="Add new item."
                     onclick="handlers.plusHandler()">+</button>
+        </li>
+    </ul>
+    <ul id="supplies">
+        <li id="supplyPlus">
+            <button class="supplyButton ui" title="Add an item that an existing production line already supplies."
+                    onclick="handlers.supplyPlusHandler()">+ supplied input</button>
         </li>
     </ul>
 
@@ -151,6 +159,12 @@ limitations under the License.-->
             </tr>
 
             <tr class="setting-row">
+            <td class="setting-label top">Clock speed precision:</td>
+            <td><input id="clockprec" class="prec" type="number" min="0" max="4" placeholder="off" onchange="handlers.changeClockPrecision(event)"> decimal places
+            <div class="setting-note">Leave empty to show fractional building counts. Set it to show whole buildings and the clock speed to give them all, as you'd type it in game: 4 decimal places on PC, 2 with a controller slider. Clock speeds are rounded up (and are at least 1%), so a plan never falls short, and power is worked out for those clock speeds.</div></td>
+            </tr>
+
+            <tr class="setting-row">
             <td class="setting-label top">Format values as:</td>
             <td><form id="value_format">
                 <input id="decimal_format" type="radio" name="format" value="decimal" checked onchange="handlers.changeFormat(event)"><label for="decimal_format">Decimals</label><br />
@@ -180,7 +194,8 @@ limitations under the License.-->
     </div>
 
     <div id="recipes_tab" class="tab">
-        <p>Click to toggle recipe.</p>
+        <div id="recipe_controls"></div>
+        <p class="recipe-help">Click a recipe to turn it on or off. Recipes with an orange border are available to the calculator; recipes are listed under the item they mainly make.</p>
         <div id="recipe_toggles"></div>
     </div>
 

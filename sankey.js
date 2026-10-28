@@ -230,5 +230,5 @@ export function renderSankey(data, ignore) {
             .on("mouseover", (event, d) => d.node.highlight())
             .on("mouseleave", (event, d) => d.node.unhighlight())
             .append("title")
-                .text(d => d.node.name + (d.node.count.isZero() ? "" : `\n${d.node.building.name} \u00d7 ${spec.format.count(d.node.count)}`))
+                .text(d => d.node.name + (d.node.count.isZero() ? "" : `\n${d.node.building.name} \u00d7 ${spec.countText(d.node.recipe, d.node.rate)}`))
 }

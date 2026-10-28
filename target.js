@@ -49,7 +49,7 @@ function changeRateHandler(target) {
     }
 }
 
-function resetSearch(dropdown) {
+export function resetSearch(dropdown) {
     dropdown.getElementsByClassName("search")[0].value = ""
 
     // unhide all child nodes
@@ -59,7 +59,7 @@ function resetSearch(dropdown) {
     }
 }
 
-function searchTargets(event) {
+export function searchTargets(event) {
     let search = this
     let search_text = search.value.toLowerCase().replace(/[^a-z0-9]+/g, "")
     let dropdown = d3.select(search.parentNode)

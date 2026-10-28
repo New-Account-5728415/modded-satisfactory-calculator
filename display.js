@@ -357,6 +357,10 @@ export function displayItems(spec, totals) {
         })
         .classed("nobuilding", d => d.building === null)
         .classed("noitem", d => d.item === null)
+        .classed("supplyrow", d => !!(d.recipe && d.recipe.isSupply))
+    row.filter(d => d.recipe && d.recipe.isSupply)
+        .selectAll("tt.building-count")
+            .text(d => "supplied " + spec.format.rate(totals.rates.get(d.recipe)))
     // Update row data.
     let itemRow = row.filter(d => d.item !== null)
     let itemIcon = itemRow.selectAll(".item-icon")
@@ -402,7 +406,13 @@ export function displayItems(spec, totals) {
     buildingCell.append("span")
         .text(" \u00d7")
     buildingRow.selectAll("tt.building-count")
-        .text(d => spec.format.alignCount(spec.getCount(d.recipe, totals.rates.get(d.recipe))))
+        .text(d => {
+            let rate = totals.rates.get(d.recipe)
+            if (spec.clockDecimals !== null) {
+                return spec.countText(d.recipe, rate)
+            }
+            return spec.format.alignCount(spec.getCount(d.recipe, rate))
+        })
     buildingRow.selectAll("input.overclock")
         .attr("value", d => d.overclock)
     let hundred = Rational.from_float(100)

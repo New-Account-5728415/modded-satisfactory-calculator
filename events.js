@@ -22,6 +22,24 @@ export function plusHandler() {
     spec.updateSolution()
 }
 
+export function supplyPlusHandler() {
+    spec.addSupply()
+    spec.updateSolution()
+}
+
+// clock speed precision
+
+export function changeClockPrecision(event) {
+    let value = event.target.value.trim()
+    if (value === "") {
+        spec.clockDecimals = null
+    } else {
+        spec.clockDecimals = Math.max(0, Math.min(4, Math.round(Number(value))))
+        event.target.value = spec.clockDecimals
+    }
+    spec.display()
+}
+
 // tab events
 
 export const DEFAULT_TAB = "graph"

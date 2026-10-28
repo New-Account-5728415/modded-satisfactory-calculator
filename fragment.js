@@ -44,6 +44,9 @@ export function formatSettings(overrideTab, targets) {
     if (spec.format.displayFormat !== DEFAULT_FORMAT) {
         settings += "vf=" + spec.format.displayFormat[0] + "&"
     }
+    if (spec.clockDecimals !== null) {
+        settings += "clk=" + spec.clockDecimals + "&"
+    }
     if (spec.belt.key !== DEFAULT_BELT) {
         settings += "belt=" + spec.belt.key + "&"
     }
@@ -78,6 +81,16 @@ export function formatSettings(overrideTab, targets) {
         }
     }
     settings += targetStrings.join(",")
+
+    let supplyStrings = []
+    for (let input of spec.supplyInputs) {
+        if (input.item && !input.rate.isZero()) {
+            supplyStrings.push(`${input.item.key}:${input.rate.mul(spec.format.rateFactor).toString()}`)
+        }
+    }
+    if (supplyStrings.length > 0) {
+        settings += "&supply=" + supplyStrings.join(",")
+    }
 
     let ignore = []
     for (let item of spec.ignore) {

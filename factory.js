@@ -19,6 +19,7 @@ import { PriorityList } from "./priority.js"
 import { Rational, zero, half, one } from "./rational.js"
 import { DISABLED_RECIPE_PREFIX } from "./recipe.js"
 import { solve } from "./solve.js"
+import { SupplyInput } from "./supply.js"
 import { BuildTarget } from "./target.js"
 import { reapTooltips } from "./tooltip.js"
 import { renderTotals } from "./visualize.js"
@@ -62,6 +63,15 @@ class FactorySpecification {
 
         // Map recipe to somersloop count
         this.somersloop = new Map()
+
+        // Inputs supplied from existing production lines: list of
+        // SupplyInput, and the map of item to rate built from them.
+        this.supplyInputs = []
+        this.supply = new Map()
+
+        // Clock speed precision, in decimal places of a percent (the game
+        // takes 4). null shows fractional building counts instead.
+        this.clockDecimals = null
 
         this.belt = null
 
@@ -328,8 +338,14 @@ class FactorySpecification {
         // cases where solutions are infeasible otherwise. This happens in two
         // cases: When enough recipes have been disabled to prevent its
         // production in any other way, and when the item is being ignored.
+        if (this.supply.has(item)) {
+            recipes.push(item.supplyRecipe)
+        }
         if (this.isItemDisabled(item) || this.ignore.has(item)) {
             let result = [item.disableRecipe]
+            if (this.supply.has(item)) {
+                result.push(item.supplyRecipe)
+            }
             // Still consider any recipes which produce both this item and any
             // other un-ignored items.
             for (let r of recipes) {
@@ -432,6 +448,38 @@ class FactorySpecification {
         }
         return building.getCount(this, recipe, rate)
     }
+    // With a clock speed precision set: the whole number of buildings, and
+    // the clock speed (in percent, rounded up to the precision and at least
+    // 1%) they all run at to make the recipe-rate. Otherwise null.
+    getMachines(recipe, rate) {
+        if (this.clockDecimals === null || this.getBuilding(recipe) === null) {
+            return null
+        }
+        let count = this.getCount(recipe, rate)
+        if (count.isZero()) {
+            return {count: zero, clock: zero}
+        }
+        let machines = count.ceil()
+        let hundred = Rational.from_float(100)
+        let step = Rational.from_float(Math.pow(10, this.clockDecimals)).reciprocate()
+        let percent = this.getOverclock(recipe).mul(count).div(machines).mul(hundred)
+        let clock = percent.div(step).ceil().mul(step)
+        if (clock.less(one)) {
+            clock = one
+        }
+        return {count: machines, clock}
+    }
+    // Building count as shown in the tables and the diagram.
+    countText(recipe, rate) {
+        let m = this.getMachines(recipe, rate)
+        if (m === null) {
+            return this.format.count(this.getCount(recipe, rate))
+        }
+        if (m.count.isZero()) {
+            return "0"
+        }
+        return `${m.count.toString()} @ ${m.clock.toDecimal(this.clockDecimals, zero)}%`
+    }
     getBeltCount(rate) {
         return rate.div(this.belt.rate)
     }
@@ -446,6 +494,14 @@ class FactorySpecification {
         let count = this.getCount(recipe, rate)
         let sloop = one.add(this.getSomersloop(recipe))
         sloop = sloop.mul(sloop)
+        let machines = this.getMachines(recipe, rate)
+        if (machines !== null) {
+            // Whole buildings, each drawing power for its own clock speed.
+            let clock = machines.clock.div(Rational.from_float(100))
+            let factor = Rational.from_float(Math.pow(clock.toFloat(), OVERCLOCK_POWER_EXPONENT))
+            let power = building.power.mul(machines.count).mul(sloop).mul(factor)
+            return {average: power, peak: power}
+        }
         let average = building.power.mul(count).mul(sloop)
         let peak = building.power.mul(count.ceil()).mul(sloop)
         let overclock = this.overclock.get(recipe)
@@ -470,6 +526,20 @@ class FactorySpecification {
         this.buildTargets.push(target)
         d3.select("#targets").insert(() => target.element, "#plusButton")
         return target
+    }
+    addSupply(itemKey) {
+        let item = this.items.get(itemKey === undefined ? DEFAULT_ITEM_KEY : itemKey)
+        let input = new SupplyInput(item, this.itemTiers)
+        this.supplyInputs.push(input)
+        d3.select("#supplies").insert(() => input.element, "#supplyPlus")
+        return input
+    }
+    removeSupply(input) {
+        let i = this.supplyInputs.indexOf(input)
+        if (i !== -1) {
+            this.supplyInputs.splice(i, 1)
+        }
+        d3.select(input.element).remove()
     }
     removeTarget(target) {
         this.buildTargets.splice(target.index, 1)
@@ -504,6 +574,13 @@ class FactorySpecification {
         }
     }
     solve() {
+        this.supply = new Map()
+        for (let input of this.supplyInputs) {
+            let rate = input.getRate()
+            if (input.item && zero.less(rate)) {
+                this.supply.set(input.item, (this.supply.get(input.item) || zero).add(rate))
+            }
+        }
         let outputs = []
         for (let target of this.buildTargets) {
             let item = target.item
@@ -557,6 +634,10 @@ class FactorySpecification {
         // Update build target text boxes, if needed.
         for (let target of this.buildTargets) {
             target.getRate()
+        }
+        for (let input of this.supplyInputs) {
+            input.getRate()
+            input.showUsed(this.lastTotals)
         }
         displayItems(this, this.lastTotals)
         renderTotals(this.lastTotals, this.ignore)

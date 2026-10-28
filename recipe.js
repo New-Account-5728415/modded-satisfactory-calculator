@@ -88,7 +88,7 @@ class Recipe {
     }
 }
 
-function renderIngredient(ingSpan) {
+export function renderIngredient(ingSpan) {
     ingSpan.classed("ingredient", true)
         .attr("title", d => d.item.name)
         .append(d => d.item.icon.make(32))
@@ -147,6 +147,47 @@ export class DisabledRecipe {
     }
     isDisable() {
         return true
+    }
+}
+
+export const SUPPLY_RECIPE_PREFIX = "S-"
+
+// Pseudo-recipe for an item supplied from outside the factory (an existing
+// production line), up to the rate the person entered. It costs nothing, so
+// the solver uses it before building anything to make the item.
+export class SupplyRecipe {
+    constructor(item) {
+        this.key = SUPPLY_RECIPE_PREFIX + item.key
+        this.name = item.name + " (supplied)"
+        this.category = null
+        this.time = null
+        this.ingredients = []
+        this.products = [new Ingredient(item, one)]
+        this.icon = new Icon(this, item.name)
+        this.isSupply = true
+    }
+    gives(item) {
+        for (let ing of this.products) {
+            if (ing.item === item) {
+                return ing.amount
+            }
+        }
+        return null
+    }
+    uses(item) {
+        return zero
+    }
+    isNetProducer(item) {
+        return true
+    }
+    isResource() {
+        return false
+    }
+    isReal() {
+        return true
+    }
+    isDisable() {
+        return false
     }
 }
 

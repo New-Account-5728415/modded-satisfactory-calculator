@@ -48,6 +48,7 @@
             "name": "Constructor",
             "key_name": "constructor",
             "category": "crafting1",
+            "tier": -1,
             "power": 4,
             "somersloop_slots": 1,
             "max": 1
@@ -56,6 +57,7 @@
             "name": "Assembler",
             "key_name": "assembler",
             "category": "crafting2",
+            "tier": 2,
             "power": 15,
             "somersloop_slots": 2,
             "max": 2
@@ -64,6 +66,7 @@
             "name": "Manufacturer",
             "key_name": "manufacturer",
             "category": "crafting3",
+            "tier": 6,
             "power": 55,
             "somersloop_slots": 4,
             "max": 4
@@ -72,6 +75,7 @@
             "name": "Smelter",
             "key_name": "smelter",
             "category": "smelting1",
+            "tier": -1,
             "power": 4,
             "somersloop_slots": 1,
             "max": 1
@@ -80,6 +84,7 @@
             "name": "Foundry",
             "key_name": "foundry",
             "category": "smelting2",
+            "tier": 3,
             "power": 16,
             "somersloop_slots": 2,
             "max": 2
@@ -88,6 +93,7 @@
             "name": "Refinery",
             "key_name": "oil-refinery",
             "category": "refining",
+            "tier": 5,
             "power": 30,
             "somersloop_slots": 2,
             "max": 1
@@ -96,6 +102,7 @@
             "name": "Packager",
             "key_name": "packager",
             "category": "packaging",
+            "tier": 5,
             "power": 10,
             "somersloop_slots": null,
             "max": 2
@@ -104,6 +111,7 @@
             "name": "Blender",
             "key_name": "blender",
             "category": "blending",
+            "tier": 7,
             "power": 75,
             "somersloop_slots": 4,
             "max": 4
@@ -112,6 +120,7 @@
             "name": "Particle Accelerator",
             "key_name": "accelerator",
             "category": "accelerating",
+            "tier": 8,
             "power": 0,
             "somersloop_slots": 4,
             "max": 3
@@ -120,6 +129,7 @@
             "name": "Converter",
             "key_name": "converter",
             "category": "converting",
+            "tier": 9,
             "power": 0,
             "power_range": [100, 400],
             "somersloop_slots": 2,
@@ -129,6 +139,7 @@
             "name": "Quantum Encoder",
             "key_name": "quantum-encoder",
             "category": "encoding",
+            "tier": 9,
             "power": 0,
             "power_range": [0, 2000],
             "somersloop_slots": 4,
@@ -138,6 +149,7 @@
             "name": "Nuclear Power Plant",
             "key_name": "nuclear-power-plant",
             "category": "nuke-reacting",
+            "tier": 8,
             "power": 0,
             "somersloop_slots": null,
             "max": 2

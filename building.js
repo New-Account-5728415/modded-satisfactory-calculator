@@ -15,10 +15,12 @@ import { Icon } from "./icon.js"
 import { Rational } from "./rational.js"
 
 class Building {
-    constructor(key, name, category, power, maxSomersloop, max) {
+    constructor(key, name, category, power, maxSomersloop, max, tier) {
         this.key = key
         this.name = name
         this.category = category
+        // Milestone tier the building unlocks in (null if not given).
+        this.tier = tier === undefined ? null : tier
         this.power = power
         this.maxSomersloop = maxSomersloop
         this.max = max
@@ -67,6 +69,7 @@ export function getBuildings(data) {
             Rational.from_float(d.power),
             Rational.from_float(d.somersloop_slots),
             d.max,
+            d.tier,
         ))
     }
     for (let d of data.miners) {
