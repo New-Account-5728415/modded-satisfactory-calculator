@@ -203,7 +203,10 @@ function makeRecipe(data, items, d) {
         let item = items.get(item_key)
         ingredients.push(new Ingredient(item, Rational.from_float(amount)))
     }
-    return new Recipe(d.key_name, d.name, d.category, time, ingredients, products)
+    let recipe = new Recipe(d.key_name, d.name, d.category, time, ingredients, products)
+    // Recipes from mods that start turned off ("default_disabled" in data.json).
+    recipe.defaultDisabled = !!d.default_disabled
+    return recipe
 }
 
 class ResourceRecipe extends Recipe {

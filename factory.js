@@ -110,10 +110,20 @@ class FactorySpecification {
             tier.push(item)
             // By default, disable all recipes but one for (most) items that
             // have multiple recipes.
-            if (item.recipes.length > 1) {
+            // Recipes marked off by default in data.json start off, and don't
+            // count for the rules below.
+            let itemRecipes = []
+            for (let recipe of item.recipes) {
+                if (recipe.defaultDisabled) {
+                    this.defaultDisable.add(recipe)
+                } else {
+                    itemRecipes.push(recipe)
+                }
+            }
+            if (itemRecipes.length > 1) {
                 let chosen = null
                 let skip = false
-                for (let recipe of item.recipes) {
+                for (let recipe of itemRecipes) {
                     if (recipe.isResource()) {
                         chosen = recipe
                     }
@@ -128,9 +138,9 @@ class FactorySpecification {
                     continue
                 }
                 if (chosen === null) {
-                    chosen = item.recipes[0]
+                    chosen = itemRecipes[0]
                 }
-                for (let recipe of item.recipes) {
+                for (let recipe of itemRecipes) {
                     if (recipe !== chosen) {
                         this.defaultDisable.add(recipe)
                     }
