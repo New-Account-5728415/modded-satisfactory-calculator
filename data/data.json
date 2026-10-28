@@ -5225,35 +5225,8 @@
                     ["sulfuric-acid", 0.75]
                 ],
                 "products": [
-                    ["caterium-ingot", 24],
+                    ["caterium-ingot", 9],
                     ["nitric-acid", 1.12]
-                ]
-            },
-            {
-                "name": "Alternate: Heate-Fused Reinforced Iron Plate",
-                "key_name": "alt-heate-fused-iron-plate",
-                "category": "smelting2",
-                "time": 48,
-                "ingredients": [
-                    ["iron-plate", 24],
-                    ["packaged-fuel", 1]
-                ],
-                "products": [
-                    ["reinforced-iron-plate", 10]
-                ]
-            },
-            {
-                "name": "Alternate: Heated Modular Frame",
-                "key_name": "alt-heated-modular-frame",
-                "category": "blending",
-                "time": 48,
-                "ingredients": [
-                    ["reinforced-iron-plate", 2],
-                    ["steel-ingot", 8],
-                    ["fuel", 2.5]
-                ],
-                "products": [
-                    ["modular-frame", 3]
                 ]
             },
             {
@@ -5282,20 +5255,6 @@
                 "products": [
                     ["petroleum-coke", 15],
                     ["sulfur", 5]
-                ]
-            },
-            {
-                "name": "Alternate: Heated Heavy Frame",
-                "key_name": "alt-heated-heavy-frame",
-                "category": "blending",
-                "time": 48,
-                "ingredients": [
-                    ["modular-frame", 8],
-                    ["encased-industrial-beam", 16],
-                    ["fuel", 5]
-                ],
-                "products": [
-                    ["heavy-modular-frame", 3]
                 ]
             },
             {
@@ -5417,7 +5376,7 @@
                 ]
             },
             {
-                "name": "Alternate: Fisconium Singularity Cell",
+                "name": "Alternate: Ficsonium Singularity Cell",
                 "key_name": "alt-fisc-singularity-cell",
                 "category": "crafting3",
                 "time": 60,
@@ -5470,6 +5429,35 @@
                 ],
                 "products": [
                     ["caterium-ingot", 6]
+                ]
+            },
+            {
+                "name": "Uranium Fuel Rod",
+                "key_name": "uranium-fuel-rod",
+                "category": "crafting3",
+                "time": 150,
+                "ingredients": [
+                    ["uranium-cell", 50],
+                    ["em-control-rod", 3],
+                    ["encased-industrial-beam", 2]
+                ],
+                "products": [
+                    ["uranium-fuel-rod", 1]
+                ]
+            },
+            {
+                "name": "Alternate: Uranium Fuel Unit",
+                "key_name": "alt-uranium-fuel-unit",
+                "category": "crafting3",
+                "time": 300,
+                "ingredients": [
+                    ["uranium-cell", 100],
+                    ["em-control-rod", 6],
+                    ["crystal-oscillator", 2],
+                    ["rotor", 8]
+                ],
+                "products": [
+                    ["uranium-fuel-rod", 3]
                 ]
             }
         ]
