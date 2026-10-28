@@ -3294,6 +3294,20 @@
             ]
         },
         {
+            "name": "Alternate: Catalytic Nitric Acid",
+            "key_name": "alt-catalytic-nitric-acid",
+            "category": "blending",
+            "time": 6,
+            "ingredients": [
+                ["nitrogen-gas", 10],
+                ["water", 5],
+                ["quickwire", 2]
+            ],
+            "products": [
+                ["nitric-acid", 4]
+            ]
+        },
+        {
             "name": "Uranium Fuel Rod",
             "key_name": "uranium-fuel-rod",
             "category": "crafting3",
