@@ -346,7 +346,7 @@
         {
             "name": "Power Shard",
             "key_name": "power-shard",
-            "tier": 9,
+            "tier": 1,
             "stack_size": 100
         },
         {
@@ -472,7 +472,7 @@
         {
             "name": "AI Limiter",
             "key_name": "ai-limiter",
-            "tier": 5,
+            "tier": 2,
             "stack_size": 100
         },
         {
@@ -730,7 +730,7 @@
         {
             "name": "Packaged Turbofuel",
             "key_name": "packaged-turbofuel",
-            "tier": 6,
+            "tier": 5,
             "stack_size": 100
         },
         {
@@ -1114,7 +1114,7 @@
         {
             "name": "Ionized Fuel",
             "key_name": "ionized-fuel",
-            "tier": 9
+            "tier": 8
         }
     ],
     "recipes": [
